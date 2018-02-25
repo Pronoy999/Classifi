@@ -6,12 +6,11 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.JsonRequest;
 
 import org.json.JSONObject;
 
 /**
- * Created by pronoymukherjee on 25/02/18.
+ * This is the class to make a Volley Request.
  */
 
 public class HTTPConnector {
@@ -20,9 +19,26 @@ public class HTTPConnector {
     public JSONObject response;
     private Context context;
     public ResponseListener responseListener;
+
+    /**
+     * Constructor for the HTTPConnector.
+     * @param context: The context.
+     * @param queryUrl: The URL where the request to be send.
+     * @param responseListener: The Response Listener.
+     */
+    public HTTPConnector(Context context,String queryUrl,ResponseListener responseListener){
+        this.context=context;
+        this.queryUrl=queryUrl;
+        this.responseListener=responseListener;
+    }
     public interface ResponseListener{
         void onResponse(JSONObject response);
     }
+
+    /**
+     * This is the method to make query with the volley.
+     * @param postData: This is data to be send as the POST Data.
+     */
     public void makeQuery(JSONObject postData){
         JsonObjectRequest request=new JsonObjectRequest(Request.Method.POST, queryUrl, postData, new Response.Listener<JSONObject>() {
             @Override
@@ -39,6 +55,10 @@ public class HTTPConnector {
         });
         SingleTon.getInstance(context.getApplicationContext()).addToRequestQueue(request);
     }
+
+    /**
+     * This is the method to make Query with the volley.
+     */
     public void makeQuery(){
         JsonObjectRequest request=new JsonObjectRequest(Request.Method.GET, queryUrl, null, new Response.Listener<JSONObject>() {
             @Override
