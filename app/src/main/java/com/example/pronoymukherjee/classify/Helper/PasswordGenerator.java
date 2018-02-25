@@ -3,7 +3,7 @@ package com.example.pronoymukherjee.classify.Helper;
 /**
  * This is the class to generate the password for the wifi hotspot.
  */
-public class Password_Generator {
+public class PasswordGenerator {
     /**
      * This is the method which returns a random password generated using the name and the roll number.
      * Name: Dhon. Roll:14400115069. Password: 9605110044n.
