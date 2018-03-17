@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.pronoymukherjee.classify">
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,13 +14,37 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.MainActivity">
+        <activity android:name=".Activities.MainActivity" />
+        <activity android:name=".Activities.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activities.SignUpActivity" />
+        <activity android:name=".Activities.ChooseProfileActivity" />
+        <activity android:name=".Activities.StudentBasicDetails" />
+        <activity android:name=".Activities.TeacherBasicDetails" />
+        <activity android:name=".Activities.StudentsAlmaActivity" />
+        <activity android:name=".Activities.TeacherAlmaActivity" />
+        <activity android:name=".Activities.ContactInfoGeneric" />
+        <activity android:name=".Activities.MiscDetailsActivity" />
+        <activity android:name=".Activities.JobDesignationActivity" />
+        <activity android:name=".Activities.TeacherProfileActivity" />
+        <activity android:name=".Activities.StudentProfileActivity" />
+        <activity android:name=".Activities.StudentCourseList" />
+        <activity android:name=".Activities.TeacherCourseList" />
+        <activity android:name=".Activities.AddCourseGeneric" />
+        <activity android:name=".Activities.StudentRoutineActivity" />
+        <activity android:name=".Activities.TeacherRoutineActivity" />
+        <activity android:name=".Activities.StudentCourseHome" />
+        <activity android:name=".Activities.TeacherCourseHome" />
+        <activity android:name=".Activities.NotesActivity" />
+        <activity android:name=".Activities.StudentAttendanceActivity" />
+        <activity android:name=".Activities.TeacherAttendanceActivity" />
+        <activity android:name=".Activities.RatingActivity" />
+        <activity android:name=".Activities.AssignmentActivity"></activity>
     </application>
 
 </manifest>
