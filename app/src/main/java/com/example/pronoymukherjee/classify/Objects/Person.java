@@ -75,6 +75,8 @@ class Teacher extends Person{
         newCourse.setCollegeID(this.college.getCollegeCode());
         newCourse.setSection(section);
         newCourse.setSemester(semester);
+        newCourse.setTeacher(this);
+
         courses.add(newCourse);
         courseMap.put(courseCode, newCourse);
         return newCourse;
@@ -110,6 +112,8 @@ class Student extends Person{
     public boolean enrollToCourse(Course course){
         courses.add(course);
         courseMap.put(course.getCode(), course);
+        course.getStudents().add(this);
+
         return true;
     }
 
@@ -118,6 +122,7 @@ class Student extends Person{
 
         courses.remove(course);
         courseMap.remove(course.getCode());
+        course.getStudents().remove(this);
         return true;
     }
 }
