@@ -5,11 +5,11 @@ import android.os.Bundle;
 
 import com.example.pronoymukherjee.classify.R;
 
-public class StudentBasicDetails extends AppCompatActivity {
+public class BasicDetails extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_basic_details);
+        setContentView(R.layout.activity_basic_details);
     }
 }

@@ -24,8 +24,7 @@
         </activity>
         <activity android:name=".Activities.SignUpActivity" />
         <activity android:name=".Activities.ChooseProfileActivity" />
-        <activity android:name=".Activities.StudentBasicDetails" />
-        <activity android:name=".Activities.TeacherBasicDetails" />
+        <activity android:name=".Activities.BasicDetails" />
         <activity android:name=".Activities.StudentsAlmaActivity" />
         <activity android:name=".Activities.TeacherAlmaActivity" />
         <activity android:name=".Activities.ContactInfoGeneric" />
