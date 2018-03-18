@@ -1,15 +1,34 @@
 package com.example.pronoymukherjee.classify.Objects;
 
+import java.util.List;
+
 /**
  * This is an object for subject details.
  */
 
 public class Course {
     private String code, name, section, teacherID, collegeID;
+    private List<Student> students; //students enrolled in this course.
     private int semester;
+    private Teacher teacher; //teacher who made and teaches the course.
+
+
     public Course(String code, String courseName){
         this.code = code;
         this.name = courseName;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+    public Teacher getTeacher() {
+        return teacher;
+    }
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 
     public String getSection() {return section;}
