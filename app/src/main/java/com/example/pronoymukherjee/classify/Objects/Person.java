@@ -21,6 +21,25 @@ abstract class Person {
     protected char gender;
     protected College college;
 
+    protected List<Course> courses;
+    protected Map<String, Course> courseMap;
+
+    public Person(String ID, String name, String department, String email,
+                  String phoneNumber, String yearOfJoin, Date dob, char gender, College college) {
+        this.ID = ID;
+        this.name = name;
+        this.department = department;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.yearOfJoin = yearOfJoin;
+        this.dob = dob;
+        this.gender = gender;
+        this.college = college;
+
+        courses = new ArrayList<>();
+        courseMap = new HashMap<>();
+    }
+
     public String getID() {return ID;}
     public void setID(String ID) {this.ID = ID;}
 
@@ -44,12 +63,10 @@ abstract class Person {
 }
 
 class Teacher extends Person{
-    private List<Course> courses;
-    private Map<String, Course> courseMap;
 
-    Teacher(){
-        courses = new ArrayList<>();
-        courseMap = new HashMap<>();
+    public Teacher(String ID, String name, String department, String email, String phoneNumber,
+                   String yearOfJoin, Date dob, char gender, College college) {
+        super(ID, name, department, email, phoneNumber, yearOfJoin, dob, gender, college);
     }
 
     public Course makeCourse(String courseCode, String courseName, String section, int semester){
@@ -68,11 +85,20 @@ class Teacher extends Person{
         courseMap.remove(courseCode);
         return true;
     }
-
 }
 
 class Student extends Person{
     private String rollNumber, regNumber, section;
+
+    public Student(String ID, String name, String department, String email, String phoneNumber,
+                   String yearOfJoin, Date dob, char gender, College college, String rollNumber,
+                   String regNumber, String section) {
+        super(ID, name, department, email, phoneNumber, yearOfJoin, dob, gender, college);
+        this.rollNumber = rollNumber;
+        this.regNumber = regNumber;
+        this.section = section;
+
+    }
 
     public String getRollNumber() {return rollNumber;}
     public void setRollNumber(String rollNumber) {this.rollNumber = rollNumber;}
@@ -80,4 +106,18 @@ class Student extends Person{
     public void setRegNumber(String regNumber) {this.regNumber = regNumber;}
     public String getSection() {return section;}
     public void setSection(String section) {this.section = section;}
+
+    public boolean enrollToCourse(Course course){
+        courses.add(course);
+        courseMap.put(course.getCode(), course);
+        return true;
+    }
+
+    public boolean unenrollFromCourse(Course course){
+        if (!courseMap.containsKey(course.getCode())) { return false; }
+
+        courses.remove(course);
+        courseMap.remove(course.getCode());
+        return true;
+    }
 }
