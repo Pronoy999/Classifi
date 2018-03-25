@@ -29,4 +29,18 @@ public class Attendance {
     public int getAttended() {return attended;}
 
     public void setAttended(int attended) {this.attended = attended;}
+
+    /**
+     * This is the method to increment the attendance.
+     */
+    public void incrementAttendance(){
+        attended++;
+    }
+
+    /**
+     * This is the method to decrement the attendance.
+     */
+    public void decrementAttendance(){
+        attended--;
+    }
 }
