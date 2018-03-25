@@ -1,6 +1,8 @@
 package com.example.pronoymukherjee.classify.Objects;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * This is an object for subject details.
@@ -9,6 +11,7 @@ import java.util.List;
 public class Course {
     private String code, name, section, teacherID, collegeID;
     private List<Student> students; //students enrolled in this course.
+    private Map<Student,Attendance> attendanceMap=new HashMap<>();
     private int semester;
     private Teacher teacher; //teacher who made and teaches the course.
 
@@ -16,6 +19,7 @@ public class Course {
     public Course(String code, String courseName){
         this.code = code;
         this.name = courseName;
+        fillAttendanceMap();
     }
 
     public List<Student> getStudents() {
@@ -43,4 +47,25 @@ public class Course {
     public void setCode(String code) {this.code = code;}
     public String getName() {return name;}
     public void setName(String name) {this.name = name;}
+
+    /**
+     * This is the method to initialize the map with the students and the attendance.
+     */
+    private void fillAttendanceMap(){
+        for(Student student: students){
+            attendanceMap.put(student,new Attendance(student.getEmail(),code,0,0));
+        }
+    }
+
+    /**
+     * This is the method to update the attendance of the student who were present.
+     * @param student: The student object who were present.
+     */
+    public void updateAttendanceMap(Student student){
+        for(Map.Entry<Student,Attendance> studentAttendanceEntry: attendanceMap.entrySet()){
+            if(studentAttendanceEntry.getKey().getEmail().equals(student.getEmail())){
+                studentAttendanceEntry.getValue().incrementAttendance();
+            }
+        }
+    }
 }
