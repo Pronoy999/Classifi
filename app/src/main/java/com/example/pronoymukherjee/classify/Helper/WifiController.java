@@ -143,6 +143,10 @@ public class WifiController {
         }
     }
 
+    /**
+     * Gets BSSID of the currently connected-to station.
+     * @return BSSID of station.
+     */
     public String getBSSID() {
         if (controller.wifiManager.getConnectionInfo() == null)
             return null;

@@ -1,6 +1,7 @@
 package com.example.pronoymukherjee.classify.Objects;
 
 import java.util.Date;
+import java.util.Map;
 
 /**Class representing a student.
  * Created by Debanik on 01-04-2018.
@@ -59,5 +60,24 @@ public class Student extends Person{
         courseMap.remove(course.getCode());
         course.getStudents().remove(this);
         return true;
+    }
+
+    public void markPresent(Course course){
+        Map<Student, Attendance> attendanceMap =
+                course.getAttendanceMap();
+        Attendance attendance = attendanceMap.get(this);
+        attendance.setAttended(attendance.getAttended()+1);
+        attendance.setTotal(attendance.getTotal()+1);
+
+        attendanceMap.put(this, attendance);
+    }
+
+    public void markAbsent(Course course){
+        Map<Student, Attendance> attendanceMap =
+                course.getAttendanceMap();
+        Attendance attendance = attendanceMap.get(this);
+        attendance.setTotal(attendance.getTotal()+1);
+
+        attendanceMap.put(this, attendance);
     }
 }
