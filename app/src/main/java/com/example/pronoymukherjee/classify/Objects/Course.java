@@ -22,6 +22,14 @@ public class Course {
         fillAttendanceMap();
     }
 
+    public Map<Student, Attendance> getAttendanceMap() {
+        return attendanceMap;
+    }
+
+    public void setAttendanceMap(Map<Student, Attendance> attendanceMap) {
+        this.attendanceMap = attendanceMap;
+    }
+
     public List<Student> getStudents() {
         return students;
     }

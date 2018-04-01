@@ -5,8 +5,9 @@ package com.example.pronoymukherjee.classify.Objects;
  */
 
 public class Attendance {
-    private String email,subjectCode;
-    private int total,attended;
+    private String email, subjectCode;
+    private int total, attended;
+
     public Attendance(String email,String subjectCode,int total,int attended){
         this.email=email;
         this.subjectCode=subjectCode;

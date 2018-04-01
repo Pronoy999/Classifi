@@ -10,7 +10,7 @@ import java.util.Map;
  * Person base class for a generic user on the site.
  */
 
-abstract class Person {
+public abstract class Person {
     protected String ID;
     protected String name;
     protected String department;
@@ -62,67 +62,4 @@ abstract class Person {
     public void setGender(char gender) {this.gender = gender;}
 }
 
-class Teacher extends Person{
 
-    public Teacher(String ID, String name, String department, String email, String phoneNumber,
-                   String yearOfJoin, Date dob, char gender, College college) {
-        super(ID, name, department, email, phoneNumber, yearOfJoin, dob, gender, college);
-    }
-
-    public Course makeCourse(String courseCode, String courseName, String section, int semester){
-        Course newCourse = new Course(courseCode, courseName);
-        newCourse.setTeacherID(this.ID);
-        newCourse.setCollegeID(this.college.getCollegeCode());
-        newCourse.setSection(section);
-        newCourse.setSemester(semester);
-        newCourse.setTeacher(this);
-
-        courses.add(newCourse);
-        courseMap.put(courseCode, newCourse);
-        return newCourse;
-    }
-    public boolean removeCourse(String courseCode){
-        if (!courseMap.containsKey(courseCode)){return false;}
-        courses.remove(courseMap.get(courseCode));
-        courseMap.remove(courseCode);
-        return true;
-    }
-}
-
-class Student extends Person{
-    private String rollNumber, regNumber, section;
-
-    public Student(String ID, String name, String department, String email, String phoneNumber,
-                   String yearOfJoin, Date dob, char gender, College college, String rollNumber,
-                   String regNumber, String section) {
-        super(ID, name, department, email, phoneNumber, yearOfJoin, dob, gender, college);
-        this.rollNumber = rollNumber;
-        this.regNumber = regNumber;
-        this.section = section;
-
-    }
-
-    public String getRollNumber() {return rollNumber;}
-    public void setRollNumber(String rollNumber) {this.rollNumber = rollNumber;}
-    public String getRegNumber() {return regNumber;}
-    public void setRegNumber(String regNumber) {this.regNumber = regNumber;}
-    public String getSection() {return section;}
-    public void setSection(String section) {this.section = section;}
-
-    public boolean enrollToCourse(Course course){
-        courses.add(course);
-        courseMap.put(course.getCode(), course);
-        course.getStudents().add(this);
-
-        return true;
-    }
-
-    public boolean unenrollFromCourse(Course course){
-        if (!courseMap.containsKey(course.getCode())) { return false; }
-
-        courses.remove(course);
-        courseMap.remove(course.getCode());
-        course.getStudents().remove(this);
-        return true;
-    }
-}

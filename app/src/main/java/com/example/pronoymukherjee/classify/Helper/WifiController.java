@@ -1,10 +1,14 @@
 package com.example.pronoymukherjee.classify.Helper;
 
+import android.content.Context;
 import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 
+import com.example.pronoymukherjee.classify.Objects.Course;
+
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 /**
  * Class that manages ALL WIFI-related jobs. This includes Access Points.
@@ -14,37 +18,49 @@ public class WifiController {
     /**
      * WifiManager object that manages ALL wifi related functionality.
      */
-    static WifiManager wifiManager;
+    private WifiManager wifiManager;
+    private static WifiController controller;
 
+    private WifiController(Context context){ //singleton, only ONE wifi manager can be made.
+        controller = this;
+        controller.wifiManager = (WifiManager)
+                context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+    }
+
+    public static synchronized WifiController getController(Context context){
+        if(controller!= null) return controller;
+        return new WifiController(context);
+    }
     /**
      * Checks whether the WiFi is ON or not.
      * @return boolean: true if WiFi is ON, else false.
      */
-    public static boolean checkWifiOn(){
-        return wifiManager.isWifiEnabled();
+    public boolean checkWifiOn(){
+        return controller.wifiManager.isWifiEnabled();
     }
 
     /**
      * Checks whether the phone is connected to any WiFi network or not.
      * @return boolean: true if connected to a network, else false.
      */
-    public static boolean getConnectionStatus(){
-        return wifiManager.getConnectionInfo().getSupplicantState().equals(SupplicantState.COMPLETED);
+    public boolean getConnectionStatus(){
+        return controller.wifiManager.getConnectionInfo().getSupplicantState()
+                .equals(SupplicantState.COMPLETED);
     }
     /**
      * Turns wifi ON.
      * @return boolean: true if the operation succeeds, else false.
      */
-    public static boolean turnWifiOn(){
-        return wifiManager.setWifiEnabled(true);
+    public boolean turnWifiOn(){
+        return controller.wifiManager.setWifiEnabled(true);
     }
 
     /**
      * Turns wifi OFF.
      * @return boolean: true if the operation succeeds, else false.
      */
-    public static boolean turnWifiOff(){
-        return wifiManager.setWifiEnabled(false);
+    public boolean turnWifiOff(){
+        return controller.wifiManager.setWifiEnabled(false);
     }
 
     /**
@@ -53,7 +69,7 @@ public class WifiController {
      * @param _key The Password of the connection to be connected to.
      * @return boolean: true if the operation succeeds, else false.
      */
-    public static boolean establishConnection(String _SSID, String _key){
+    public boolean establishConnection(String _SSID, String _key){
         WifiConfiguration wifiConfiguration = new WifiConfiguration();
         wifiConfiguration.SSID = "\""+_SSID+"\"";
         wifiConfiguration.preSharedKey = "\""+_key+"\"";
@@ -61,17 +77,18 @@ public class WifiController {
         wifiConfiguration.allowedProtocols.set(WifiConfiguration.Protocol.RSN);
         wifiConfiguration.allowedProtocols.set(WifiConfiguration.Protocol.WPA);
 
-        return wifiManager.enableNetwork(wifiManager.addNetwork(wifiConfiguration), true);
+        return wifiManager.enableNetwork(controller.wifiManager.addNetwork(wifiConfiguration),
+                true);
     }
 
     /**
      * Disconnects from the connection presently connected to and removes it from the list of networks.
      * @return boolean: true if network is disconnected AND removed, else false.
      */
-    public static boolean disbandConnection(){
-        WifiInfo info = wifiManager.getConnectionInfo();
+    public boolean disbandConnection(){
+        WifiInfo info = controller.wifiManager.getConnectionInfo();
         int id =info.getNetworkId();
-        return wifiManager.disableNetwork(id) && wifiManager.removeNetwork(id);
+        return controller.wifiManager.disableNetwork(id) && controller.wifiManager.removeNetwork(id);
     }
     /**
      * Turns access point on with the SSID as 'name' and Key as 'password'.
@@ -80,7 +97,8 @@ public class WifiController {
      * @param password The password of the access point that is to be made.
      * @return WifiConfiguration: The object of WifiConfiguration that holds the settings of the previous access point (to be used to revert back to old settings when access point is turned off).
      */
-    public static WifiConfiguration turnAccessPointOn(String name, String password){
+    public WifiConfiguration turnAccessPointOn(String name, String password){
+        WifiManager wifiManager = controller.wifiManager; // just an alias
         /*if(!Settings.System.canWrite(context)){
             Intent i = new Intent().setAction(Settings.ACTION_MANAGE_WRITE_SETTINGS);
             context.startActivity(i);
@@ -110,7 +128,8 @@ public class WifiController {
      * Turns access point off, reverting back to old settings of the user.
      * @param prev_config The previous access point configuration of the user to be set to.
      */
-    public static void turnAccessPointOff(WifiConfiguration prev_config){
+    public void turnAccessPointOff(WifiConfiguration prev_config){
+        WifiManager wifiManager = controller.wifiManager; // just an alias
         try {
             if(!(boolean)wifiManager.getClass().getMethod("isWifiApEnabled").invoke(wifiManager))
                 return;
@@ -122,5 +141,15 @@ public class WifiController {
             Message.logMessages("ERROR: ", e.toString());
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Gets BSSID of the currently connected-to station.
+     * @return BSSID of station.
+     */
+    public String getBSSID() {
+        if (controller.wifiManager.getConnectionInfo() == null)
+            return null;
+        return controller.wifiManager.getConnectionInfo().getBSSID();
     }
 }
