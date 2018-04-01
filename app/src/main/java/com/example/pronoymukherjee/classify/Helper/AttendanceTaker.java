@@ -2,7 +2,6 @@ package com.example.pronoymukherjee.classify.Helper;
 
 import android.content.Context;
 
-import com.example.pronoymukherjee.classify.Objects.Attendance;
 import com.example.pronoymukherjee.classify.Objects.Course;
 import com.example.pronoymukherjee.classify.Objects.Student;
 
@@ -19,7 +18,9 @@ import java.util.TimerTask;
 
 
 public class AttendanceTaker extends TimerTask{
-    private static int TIMEOUT_LIMIT = 20;
+    private static final int TIMEOUT_LIMIT = 20;
+    private int timeOut = 0, position = 0;
+
     private Context context;
 
     private Timer timer;
@@ -28,6 +29,7 @@ public class AttendanceTaker extends TimerTask{
     private List<Student> students; //all students
     private List<Student> present; //students present
     private List<Student> absent; //students absent
+    private WifiController controller;
 
     /**
      * Private constructor. Singleton.
@@ -39,7 +41,7 @@ public class AttendanceTaker extends TimerTask{
         this.context = context;
         this.students = course.getStudents();
         this.timer = new Timer(false);
-
+        this.controller = WifiController.getController(context);
         this.present = this.absent = Collections.emptyList();
         currentInstance = this;
     }
@@ -59,24 +61,19 @@ public class AttendanceTaker extends TimerTask{
     }
 
     /**
-     * This method takes a student and tries to establish connection
-     * with his/her AP using the credentials.
-     * @param student The student whose attendance is to be taken.
-     * @return true means connection established AND BSSID mathces, false otherwise.
+     * Destroys and un-initializes all data members.
      */
-    private boolean callStudent(Student student){
-        //checks the presence of student and
-        // returns accordingly.
-
-        WifiController controller = WifiController.getController(context); //singleton object
-
-        if(controller.establishConnection(student.getSSID(), student.getPSK())){
-            if(controller.getBSSID().equals(student.getBSSID()))
-                return true;
-        }
-        return false;
+    private void cleanup(){
+        timeOut = 0;
+        position = 0;
+        currentInstance = null;
+        present.clear();
+        absent.clear();
+        students.clear();
+        course = null;
+        context = null;
+        controller = null;
     }
-
     /**
      * The timer thread's run method. This is scheduled at regular intervals.
      */
@@ -84,12 +81,33 @@ public class AttendanceTaker extends TimerTask{
         if(currentInstance == null) return;
         if(timer == null) return;
 
-        for(Student student: students){
-            if(callStudent(student))
-                present.add(student);
-            else
-                absent.add(student);
+        if(timeOut>=TIMEOUT_LIMIT){
+            timeOut = 0;
+            position++;
+            return;
         }
+
+        if(position>=students.size()) {
+            cleanup();
+            return;
+        }
+
+        Student currentStudent = students.get(position);
+        controller.establishConnection(
+                currentStudent.getSSID(),
+                currentStudent.getPSK()
+        );
+
+
+        if(controller.getConnectionStatus()){
+            if(controller.getBSSID().equals(currentStudent.getBSSID()))
+                present.add(currentStudent);
+
+            controller.disbandConnection();
+            timeOut = 0;
+            position++;
+        }
+        timeOut++;
     }
 
     /**
@@ -98,27 +116,35 @@ public class AttendanceTaker extends TimerTask{
      */
     public void cancelAttendance(){ //to cancel the operation of taking attendance.
         if(timer == null) return;
+        if(currentInstance==null) return;
 
         timer.cancel();
-        present.clear();
-        absent.clear();
 
-        currentInstance = null;
+        cleanup();
     }
 
+    /**
+     * Commits all changes. Writes the updated attendances for students.
+     * Unless this method is called, all updates are local and temporary.
+     */
     public void commitUpdates(){
         for(Student student: present)
             student.markPresent(course);
         for(Student student: absent)
             student.markAbsent(course);
 
-        currentInstance = null;
+        cleanup();
     }
+
+    /**
+     * This method is invoked to take attendance for the Course with which the
+     * object was constructed.
+     */
 
     public synchronized void takeAttendance(){
         // to take attendance of students enrolled in course.
         if(this.timer == null) return;
 
-        timer.scheduleAtFixedRate(this, 0, 20);
+        timer.scheduleAtFixedRate(this, 0, 1000);
     }
 }

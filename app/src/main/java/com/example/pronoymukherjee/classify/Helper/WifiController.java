@@ -77,7 +77,7 @@ public class WifiController {
         wifiConfiguration.allowedProtocols.set(WifiConfiguration.Protocol.RSN);
         wifiConfiguration.allowedProtocols.set(WifiConfiguration.Protocol.WPA);
 
-        return wifiManager.enableNetwork(controller.wifiManager.addNetwork(wifiConfiguration),
+        return controller.wifiManager.enableNetwork(controller.wifiManager.addNetwork(wifiConfiguration),
                 true);
     }
 
