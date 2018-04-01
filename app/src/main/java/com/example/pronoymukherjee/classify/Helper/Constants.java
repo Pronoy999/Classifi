@@ -175,6 +175,9 @@ public class Constants {
             "FOREIGN KEY "+Constants.JOIN_COURSE_ID+" REFERENCES "+
             Constants.COURSE_TABLE_NAME+" ( "+Constants.COLLEGE_ID+"));";
 
+    /**
+     * Create Slot Table.
+     */
     public static final String CREATE_SLOT_TABLE="CREATE TABLE "+Constants.SLOT_TABLE_NAME+" ( "+
             Constants.SLOT_ID+" varchar(300), "+
             Constants.SLOT_START_TIME+" time, "+
