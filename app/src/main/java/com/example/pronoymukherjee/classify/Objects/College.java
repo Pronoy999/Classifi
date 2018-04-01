@@ -8,6 +8,7 @@ public class College {
     private String collegeCode;
     private String collegeName;
     private String city;
+
     public College(String collegeCode,String collegeName,String city){
         this.collegeCode=collegeCode;
         this.collegeName=collegeName;
