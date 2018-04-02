@@ -18,6 +18,10 @@ public class Constants {
     public static final String PERSON_TABLE_NAME = "Person";
     public static final String TEACHER_TABLE_NAME = "Teacher";
     public static final String STUDENT_TABLE_NAME = "Student";
+    public static final String COURSE_TABLE_NAME = "Course";
+    public static final String COLLEGE_TABLE_NAME = "College";
+    public static final String JOIN_TABLE_NAME = "Joins";
+    public static final String SLOT_TABLE_NAME="Slot";
 
     /**
      * Person Table Details.
@@ -57,6 +61,43 @@ public class Constants {
     public static final String TOTAL_DATABASE = "total";
     public static final String SID_DATABASE = "sid";
     public static final String CRS_ID_DATABASE = "crsID";
+    /**
+     * Course Table Details.
+     */
+    public static final String COURSE_ID = "courseID";
+    public static final String COURSE_NAME = "courseName";
+    public static final String COURSE_DEPT = "dept";
+    public static final String COURSE_SECTION = "section";
+    public static final String COURSE_SEMESTER = "semester";
+    public static final String COURSE_TEACHER_ID = "teacherEmailID";
+    public static final String COURSE_COLLEGE_ID = "collegeID";
+
+    /**
+     * College Table Details.
+     */
+    public static final String COLLEGE_ID = "id";
+    public static final String COLLEGE_NAME = "collegeName";
+    public static final String COLLEGE_UNIVERSITY_NAME = "universityName";
+    public static final String COLLEGE_CITY = "city";
+
+    /**
+     * Join Table Details.
+     */
+    public static final String JOIN_TIME = "joinTime";
+    public static final String JOIN_ATTENDED = "attended";
+    public static final String JOIN_TOTAL = "total";
+    public static final String JOIN_STUDENT_ID = "sid";
+    public static final String JOIN_COURSE_ID = "crsID";
+
+    /**
+     * Slot Table Details.
+     */
+    public static final String SLOT_ID="slotID";
+    public static final String SLOT_END_TIME="endTime";
+    public static final String SLOT_START_TIME="startTime";
+    public static final String SLOT_DAY="day";
+    public static final String SLOT_COURSE_ID="crsID";
+
 
     /**
      * Create Teacher Table.
@@ -98,4 +139,51 @@ public class Constants {
             Constants.END_YEAR_DATABASE + " varchar(4), " +
             "FOREIGN KEY (" + Constants.EMAIL_ID_DATABASE + ") REFERENCES " +
             Constants.PERSON_TABLE_NAME + " (" + Constants.EMAIL_ID_DATABASE + "));";
+    /**
+     * Create Course Table.
+     */
+    public static final String CREATE_COURSE_TABLE = "CREATE TABLE " + Constants.COURSE_TABLE_NAME + " ( " +
+            Constants.COURSE_ID + " varchar(300), " +
+            Constants.COURSE_NAME + " varchar(100), " +
+            Constants.COURSE_DEPT + " varchar(200), " +
+            Constants.COURSE_SECTION + " varchar(10), " +
+            Constants.COURSE_SEMESTER + " varchar(5), " +
+            Constants.COURSE_TEACHER_ID + " varchar(255), " +
+            Constants.COURSE_COLLEGE_ID + " varchar(50), " +
+            "FOREIGN KEY " + Constants.COURSE_TEACHER_ID + " REFERENCES " +
+            Constants.TEACHER_TABLE_NAME + " (" + Constants.EMAIL_ID_DATABASE + ")," +
+            "FOREIGN KEY " + Constants.COURSE_COLLEGE_ID + " REFERENCES " +
+            Constants.COLLEGE_TABLE_NAME + " (" + Constants.COLLEGE_ID + "));";
+
+    /**
+     * Create College Table.
+     */
+    public static final String CREATE_COLLEGE_TABLE = "CREATE TABLE " + Constants.COLLEGE_TABLE_NAME + " ( " +
+            Constants.COLLEGE_ID + " varchar(50), " +
+            Constants.COLLEGE_UNIVERSITY_NAME + " varchar(255), " +
+            Constants.COLLEGE_NAME + " varchar(255), " +
+            Constants.COLLEGE_CITY + " varchar(255));";
+    /**
+     * Create Join Table.
+     */
+    public static final String CREATE_JOIN_TABLE = "CREATE TABLE " + Constants.JOIN_TABLE_NAME + " ( " +
+            Constants.JOIN_TIME + " time, " +
+            Constants.JOIN_ATTENDED + " INTEGER, " +
+            Constants.JOIN_TOTAL + "INTEGER, " +
+            Constants.JOIN_STUDENT_ID + " varchar(255), " +
+            Constants.JOIN_COURSE_ID + " varchar(300), "+
+            "FOREIGN KEY "+Constants.JOIN_COURSE_ID+" REFERENCES "+
+            Constants.COURSE_TABLE_NAME+" ( "+Constants.COLLEGE_ID+"));";
+
+    /**
+     * Create Slot Table.
+     */
+    public static final String CREATE_SLOT_TABLE="CREATE TABLE "+Constants.SLOT_TABLE_NAME+" ( "+
+            Constants.SLOT_ID+" varchar(300), "+
+            Constants.SLOT_START_TIME+" time, "+
+            Constants.SLOT_END_TIME+" time, "+
+            Constants.SLOT_DAY+" varchar(10), "+
+            Constants.SLOT_COURSE_ID+" varchar(300)"+
+            "FOREIGN KEY ("+Constants.SLOT_COURSE_ID+") "+"REFERENCES "+Constants.COURSE_TABLE_NAME+
+            " ("+Constants.COURSE_ID+"));";
 }
