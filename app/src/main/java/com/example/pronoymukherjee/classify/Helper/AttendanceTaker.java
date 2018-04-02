@@ -33,22 +33,21 @@ public class AttendanceTaker extends TimerTask{
     private List<Student> present; //students present
     private List<Student> absent; //students absent
     private WifiController controller;
-    private ProgressBar progressBar;  //the bar showing the progress of this operation.
-
+    private AttendanceEventListener listener; // event listener instance.
     /**
      * Private constructor. Singleton.
      * @param course The course for which the attendance is to be taken.
      * @param context The context of the application.
      */
-    private AttendanceTaker(Course course, Context context, ProgressBar bar){
+    private AttendanceTaker(Course course, Context context, AttendanceEventListener listener){
         //singleton class. private constructor.
         this.course = course;
         this.context = context;
         this.students = course.getStudents();
         this.timer = new Timer(false);
         this.controller = WifiController.getController(context);
+        this.listener = listener;
         this.present = this.absent = new ArrayList<>();
-        this.progressBar = bar;
         currentInstance = this;
     }
 
@@ -59,12 +58,12 @@ public class AttendanceTaker extends TimerTask{
      * @param context The context of the application.
      * @return The object of this Singleton.
      */
-    public static AttendanceTaker getCurrentInstance(Course course, Context context, ProgressBar bar){
+    public static AttendanceTaker getCurrentInstance(Course course, Context context, AttendanceEventListener listener){
         //to get the only instance.
         if(currentInstance!=null && currentInstance.course.getCode().equals(course.getCode())){
             return currentInstance;
         }
-        return new AttendanceTaker(course, context, bar);
+        return new AttendanceTaker(course, context, listener);
     }
 
     /**
@@ -80,7 +79,6 @@ public class AttendanceTaker extends TimerTask{
         course = null;
         context = null;
         controller = null;
-        progressBar.setEnabled(false);
     }
     /**
      * The timer thread's run method. This is scheduled at regular intervals.
@@ -91,6 +89,7 @@ public class AttendanceTaker extends TimerTask{
 
         if(position>=students.size()) { //if all students have been called.
             timer.cancel();
+            listener.onAttendanceTaken(present, absent); // calling callback method for event.
             cleanup();
             return;
         }
@@ -108,18 +107,19 @@ public class AttendanceTaker extends TimerTask{
             timeOut = 0;           //start again
             position++;           //try next position
             absent.add(currentStudent);
-            progressBar.incrementProgressBy(1);
+            listener.onOneStudentMarked(currentStudent, false);
             return;
         }
 
         if(controller.getConnectionStatus()){  //if connection established...
             if(controller.getBSSID().equals(currentStudent.getBSSID())) {   //...and BSSID matches
                 present.add(currentStudent);    //student is present
+                listener.onOneStudentMarked(currentStudent, true);
             }else{
                 absent.add(currentStudent);
+                listener.onOneStudentMarked(currentStudent, false);
             }
 
-            progressBar.incrementProgressBy(1);
             controller.disbandConnection();   //disconnect and forget.
             timeOut = 0;
             position++;
@@ -138,21 +138,10 @@ public class AttendanceTaker extends TimerTask{
 
         timer.cancel();
 
+        listener.onAttendanceCancelled();
         cleanup();
     }
 
-    /**
-     * Commits all changes. Writes the updated attendances for students.
-     * Unless this method is called, all updates are local and temporary.
-     */
-    public void commitUpdates(){
-        for(Student student: present)
-            student.markPresent(course);
-        for(Student student: absent)
-            student.markAbsent(course);
-
-        cleanup();
-    }
 
     /**
      * This method is invoked to take attendance for the Course with which the
