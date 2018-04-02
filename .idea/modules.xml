@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Classifi.iml" filepath="$PROJECT_DIR$/Classifi.iml" />
-      <module fileurl="file://E:\Projects\Classifi\Classify.iml" filepath="E:\Projects\Classifi\Classify.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
