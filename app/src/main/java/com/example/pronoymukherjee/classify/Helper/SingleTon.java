@@ -16,7 +16,7 @@ public class SingleTon {
     private Context context;
     private static SingleTon singleTon;
     private RequestQueue requestQueue;
-    public SingleTon(Context context){
+    private SingleTon(Context context){
         this.context=context;
         requestQueue=getRequestQueue();
     }
