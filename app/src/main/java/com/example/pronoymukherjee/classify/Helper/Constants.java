@@ -186,4 +186,12 @@ public class Constants {
             Constants.SLOT_COURSE_ID+" varchar(300)"+
             "FOREIGN KEY ("+Constants.SLOT_COURSE_ID+") "+"REFERENCES "+Constants.COURSE_TABLE_NAME+
             " ("+Constants.COURSE_ID+"));";
+    /**
+     * Drop table Person.
+     */
+    public static final String DROP_PERSON_TABLE="DROP TABLE "+Constants.PERSON_TABLE_NAME;
+    /**
+     * Drop table Student.
+     */
+    public static final String DROP_STUDENT_TABLE="DROP TABLE "+Constants.STUDENT_TABLE_NAME;
 }
