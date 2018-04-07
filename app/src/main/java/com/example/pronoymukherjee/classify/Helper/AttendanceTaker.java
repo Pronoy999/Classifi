@@ -1,14 +1,11 @@
 package com.example.pronoymukherjee.classify.Helper;
 
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.widget.ProgressBar;
 
 import com.example.pronoymukherjee.classify.Objects.Course;
 import com.example.pronoymukherjee.classify.Objects.Student;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;

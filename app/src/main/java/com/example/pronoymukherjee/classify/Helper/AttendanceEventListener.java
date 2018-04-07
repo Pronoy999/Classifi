@@ -4,7 +4,7 @@ import com.example.pronoymukherjee.classify.Objects.Student;
 
 import java.util.List;
 
-/**Interface describing events during the operation of taking attendance.
+/** Interface describing events during the operation of taking attendance.
  * Created by Debanik on 02-04-2018.
  */
 
