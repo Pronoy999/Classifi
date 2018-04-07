@@ -53,7 +53,7 @@ public class AttendanceTaker extends TimerTask{
      * @param context The context of the application.
      * @return The object of this Singleton.
      */
-    public AttendanceTaker getCurrentInstance(Course course, Context context){ //to get the only instance.
+    public synchronized AttendanceTaker getCurrentInstance(Course course, Context context){ //to get the only instance.
         if(currentInstance!=null && currentInstance.course.getCode().equals(course.getCode())){
             return currentInstance;
         }
