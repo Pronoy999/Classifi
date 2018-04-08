@@ -111,7 +111,7 @@ public class Constants {
             Constants.PERSON_TABLE_NAME + " ( " +
             Constants.EMAIL_ID_DATABASE + " varchar(255) PRIMARY KEY, " +
             Constants.ADDRESS_DATABASE + " varchar(255), " +
-            Constants.PHONE_NUMBER + " varchar(255), " +
+            Constants.PHONE_NUMBER + " varchar(10), " +
             Constants.NAME_DATABASE + " varchar(255), " +
             Constants.DOB_DATABASE + " DATE, " +
             Constants.DEPARTMENT_DATABASE + " varchar(50), " +
