@@ -151,7 +151,7 @@ public class Constants {
      * Create College Table.
      */
     public static final String CREATE_COLLEGE_TABLE = "CREATE TABLE " + Constants.COLLEGE_TABLE_NAME + " ( " +
-            Constants.COLLEGE_ID + " varchar(50), " +
+            Constants.COLLEGE_ID + " varchar(300), " +
             Constants.COLLEGE_UNIVERSITY_NAME + " varchar(255), " +
             Constants.COLLEGE_NAME + " varchar(255), " +
             Constants.COLLEGE_CITY + " varchar(255));";
