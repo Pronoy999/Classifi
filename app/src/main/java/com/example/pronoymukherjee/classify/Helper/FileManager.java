@@ -1,34 +1,26 @@
 package com.example.pronoymukherjee.classify.Helper;
 
-import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.media.MediaScannerConnection;
+import android.net.Uri;
 import android.os.Environment;
-import android.os.storage.StorageManager;
-import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.example.pronoymukherjee.classify.Objects.Course;
 import com.example.pronoymukherjee.classify.Objects.StudyMaterial;
 import com.example.pronoymukherjee.classify.R;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.WriteAbortedException;
+import java.net.URI;
+import java.time.Instant;
 
-import Exceptions.WriteToSDCardException;
+import com.example.pronoymukherjee.classify.Exceptions.WriteToSDCardException;
 
 /**
  * Class to manage files on the storage.
@@ -47,6 +39,39 @@ public class FileManager {
         if (instance!=null) return instance;
         else return new FileManager(context);
     }
+
+    /**
+     * Returns the path of the directory where the file is to be made.
+     * @param inExtStorage whether the returned path should be in external storage or not.
+     * @param course the course for which the path is made.
+     * @return the String containing the path.
+     * @throws WriteToSDCardException if 'inExtStorage' is true and no media exists.
+     */
+    private String getPath(boolean inExtStorage, Course course)throws WriteToSDCardException{
+        String dirPath;
+        if (inExtStorage){
+            if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED) ||
+                    Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED_READ_ONLY)){
+                throw new WriteToSDCardException("Media not mounted or ReadOnly.");
+            }
+            dirPath = Environment.getExternalStorageDirectory().getPath()+
+                    "/"+context.getString(R.string.app_name)+
+                    "/"+course.getName();
+        }
+        else{
+            dirPath = context.getExternalFilesDir(null).getPath()+
+                    "/"+context.getString(R.string.app_name)+
+                    "/"+course.getName();
+        }
+        return dirPath;
+    }
+
+    /**
+     * Copies the bytes from one stream to another.
+     * @param is the input stream.
+     * @param os the output stream.
+     * @throws IOException
+     */
     private void copyStreamToStream(InputStream is, OutputStream os)throws IOException{
         int c;
         byte buffer[] = new byte[1024];
@@ -61,34 +86,22 @@ public class FileManager {
         is.close();
     }
 
-    public void addMaterialForCourse(StudyMaterial studyMaterial, Course course, boolean writeToSDCard)
+    public void addMaterialForCourse(StudyMaterial studyMaterial, Course course, boolean writeToExtStorage)
             throws IOException, WriteToSDCardException{
-        String dirPath;
-        if (writeToSDCard){
-            if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED) ||
-                    Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED_READ_ONLY)){
-                throw new WriteToSDCardException("Media not mounted or ReadOnly.");
-            }
-            dirPath = Environment.getExternalStorageDirectory().getPath()+
-                    "/"+context.getString(R.string.app_name)+
-                    "/"+course.getName();
-        }
-        else{
-            dirPath = context.getExternalFilesDir(null).getPath()+
-                    "/"+context.getString(R.string.app_name)+
-                    "/"+course.getName();
-        }
+        String dirPath = getPath(writeToExtStorage, course)+"/"+studyMaterial.getDate().toString();
         Log.d("PATH", dirPath);
         File dirFile = new File(dirPath);
         dirFile.mkdirs();
-        File toWrite = new File(dirPath, studyMaterial.getMaterial().getName());
+
+        File toWrite;
+        toWrite = new File(dirPath, studyMaterial.getName()+
+                        studyMaterial.getType());
         if(toWrite.exists()){
             toWrite.delete();
-
         }
-        toWrite.createNewFile();
-
-        InputStream is = new FileInputStream(studyMaterial.getMaterial());
+        Log.d("CREATE", toWrite.createNewFile()+"");
+        Uri material = studyMaterial.getMaterial();
+        InputStream is = new FileInputStream(new File(URI.create(material.toString())));
         OutputStream os = new FileOutputStream(toWrite);
         copyStreamToStream(is, os);
 

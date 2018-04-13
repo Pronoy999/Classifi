@@ -1,18 +1,17 @@
 package com.example.pronoymukherjee.classify.Activities;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ProgressBar;
+import android.util.Log;
 
-import com.example.pronoymukherjee.classify.Helper.AttendanceTaker;
 import com.example.pronoymukherjee.classify.Helper.FileManager;
-import com.example.pronoymukherjee.classify.Objects.Attendance;
-import com.example.pronoymukherjee.classify.Objects.College;
 import com.example.pronoymukherjee.classify.Objects.Course;
-import com.example.pronoymukherjee.classify.Objects.Student;
 import com.example.pronoymukherjee.classify.Objects.StudyMaterial;
-import com.example.pronoymukherjee.classify.Objects.Teacher;
 import com.example.pronoymukherjee.classify.R;
 
 import java.io.File;
@@ -20,7 +19,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
 
-import Exceptions.WriteToSDCardException;
+import com.example.pronoymukherjee.classify.Exceptions.WriteToSDCardException;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -29,16 +28,24 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        File file = new File(Environment.getExternalStorageDirectory().getPath()+"/LOL.txt");
-        try{
-            FileWriter fw = new FileWriter(file);
-            fw.write("HELLO WORLD");
-            fw.flush();
-            fw.close();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        StudyMaterial material = new StudyMaterial(file, new Date(2018, 12, 4));
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+        startActivityForResult(cameraIntent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        data.getExtras();
+        Log.d("RESULT", "RESULT");
+        //if(data.getData()==null)
+            //return;
+        StudyMaterial material =
+                new StudyMaterial(Uri.parse(data.getData().toString()),
+                        new Date(15,15,15),
+                        "LOL",
+                        StudyMaterial.TYPE_TEXT);
+
         FileManager fm = FileManager.getInstance(this);
 
         Course course = new Course("CS201", "CO");
@@ -49,6 +56,5 @@ public class SplashScreenActivity extends AppCompatActivity {
         } catch (WriteToSDCardException e) {
             e.printStackTrace();
         }
-        file.delete();
     }
 }
