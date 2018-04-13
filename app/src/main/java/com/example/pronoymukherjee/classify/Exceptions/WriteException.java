@@ -1,4 +1,4 @@
-package Exceptions;
+package com.example.pronoymukherjee.classify.Exceptions;
 
 /**
  * Exception denoting any Write Exception.
