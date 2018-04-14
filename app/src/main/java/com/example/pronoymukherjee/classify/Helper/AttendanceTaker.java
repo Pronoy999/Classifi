@@ -3,6 +3,7 @@ package com.example.pronoymukherjee.classify.Helper;
 import android.content.Context;
 
 import com.example.pronoymukherjee.classify.Objects.Course;
+import com.example.pronoymukherjee.classify.Objects.Section;
 import com.example.pronoymukherjee.classify.Objects.Student;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class AttendanceTaker extends TimerTask{
     private Context context;
 
     private Timer timer;
-    private Course course;
+    private Section section;
     private static AttendanceTaker currentInstance; //only instance of the singleton
     private List<Student> students; //all students
     private List<Student> present; //students present
@@ -33,14 +34,14 @@ public class AttendanceTaker extends TimerTask{
     private AttendanceEventListener listener; // event listener instance.
     /**
      * Private constructor. Singleton.
-     * @param course The course for which the attendance is to be taken.
+     * @param section The course for which the attendance is to be taken.
      * @param context The context of the application.
      */
-    private AttendanceTaker(Course course, Context context, AttendanceEventListener listener){
+    private AttendanceTaker(Section section, Context context, AttendanceEventListener listener){
         //singleton class. private constructor.
-        this.course = course;
+        this.section = section;
         this.context = context;
-        this.students = course.getStudents();
+        this.students = section.getStudents();
         this.timer = new Timer(false);
         this.controller = WifiController.getController(context);
         this.listener = listener;
@@ -51,16 +52,17 @@ public class AttendanceTaker extends TimerTask{
     /**
      * Returns current instance of this singleton.
      * This is used to invoke other methods.
-     * @param course The course for which the attendance is to be taken.
+     * @param section The course for which the attendance is to be taken.
      * @param context The context of the application.
      * @return The object of this Singleton.
      */
 
-    public synchronized AttendanceTaker getCurrentInstance(Course course, Context context){ //to get the only instance.
-        if(currentInstance!=null && currentInstance.course.getCode().equals(course.getCode())){
+    public synchronized AttendanceTaker getCurrentInstance(Section section, Context context){ //to get the only instance.
+        if(currentInstance!=null &&
+                currentInstance.section.getParentCourse().getCode().equals(section.getParentCourse().getCode())){
             return currentInstance;
         }
-        return new AttendanceTaker(course, context, listener);
+        return new AttendanceTaker(section, context, listener);
     }
 
     /**
@@ -73,7 +75,7 @@ public class AttendanceTaker extends TimerTask{
         present.clear();
         absent.clear();
         students.clear();
-        course = null;
+        section = null;
         context = null;
         controller = null;
     }
