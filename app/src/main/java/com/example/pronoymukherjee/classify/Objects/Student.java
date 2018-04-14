@@ -3,8 +3,8 @@ package com.example.pronoymukherjee.classify.Objects;
 import java.util.Date;
 import java.util.Map;
 
-/**Class representing a student.
- * Created by Debanik on 01-04-2018.
+/** Class representing a student.
+ *  Created by Debanik on 01-04-2018.
  */
 
 public class Student extends Person{

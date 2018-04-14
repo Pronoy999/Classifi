@@ -7,21 +7,23 @@
     tools:context="com.example.pronoymukherjee.classify.Activities.SignUpActivity">
 
     <android.support.v7.widget.AppCompatEditText
-        android:id="@+id/editText"
+        android:id="@+id/emailEnter"
         android:layout_width="181dp"
         android:layout_height="46dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="60dp"
         android:ems="10"
         android:hint="@string/e_mail"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/editText2"
+        app:layout_constraintBottom_toTopOf="@+id/password_Enter"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="40dp"
@@ -31,7 +33,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView2"
-        app:layout_constraintEnd_toStartOf="@+id/editText"
+        app:layout_constraintEnd_toStartOf="@+id/emailEnter"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -46,13 +48,13 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/editText2"
+        app:layout_constraintEnd_toStartOf="@+id/password_Enter"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@android:drawable/ic_secure" />
 
     <android.support.v7.widget.AppCompatEditText
-        android:id="@+id/editText2"
+        android:id="@+id/password_Enter"
         android:layout_width="181dp"
         android:layout_height="46dp"
         android:layout_marginBottom="348dp"
@@ -66,20 +68,20 @@
         app:layout_constraintStart_toStartOf="parent" />
 
 
-    <Button
-        android:id="@+id/button"
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/signUpButton"
         android:layout_width="110dp"
         android:layout_height="46dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
-        android:text="@string/button"
+        android:text="@string/signUpButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2"
+        app:layout_constraintTop_toBottomOf="@+id/password_Enter"
         app:layout_constraintVertical_bias="0.003" />
 
 
@@ -103,7 +105,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editText2"
+        app:layout_constraintEnd_toEndOf="@+id/password_Enter"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.611"
         app:srcCompat="@android:drawable/btn_dialog" />
