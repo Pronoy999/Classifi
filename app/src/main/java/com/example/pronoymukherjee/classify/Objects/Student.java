@@ -8,18 +8,18 @@ import java.util.Map;
  */
 
 public class Student extends Person{
-    private String rollNumber, regNumber;
+    private String rollNumber, regNumber, section;
     private String SSID, PSK; // wifi hotspot name and password.
     private String BSSID; //wifi hotspot BSSID
-    private Section section;
 
     public Student(String ID, String name, String department, String email, String phoneNumber,
                    String yearOfJoin, Date dob, char gender, College college, String rollNumber,
-                   String regNumber, Section section) {
+                   String regNumber, String section) {
         super(ID, name, department, email, phoneNumber, yearOfJoin, dob, gender, college);
         this.rollNumber = rollNumber;
         this.regNumber = regNumber;
         this.section = section;
+
     }
 
     public String getBSSID() {
@@ -42,28 +42,29 @@ public class Student extends Person{
     public void setRollNumber(String rollNumber) {this.rollNumber = rollNumber;}
     public String getRegNumber() {return regNumber;}
     public void setRegNumber(String regNumber) {this.regNumber = regNumber;}
-    public Section getSection() {return section;}
-    public void setSection(Section section) {this.section = section;}
+    public String getSection() {return section;}
+    public void setSection(String section) {this.section = section;}
 
-    public boolean enrollToCourse(Course course, Section section){
+    public boolean enrollToCourse(Course course){
         courses.add(course);
         courseMap.put(course.getCode(), course);
-        section.addStudent(this);
+        course.getStudents().add(this);
+
         return true;
     }
 
-    public boolean unenrollFromCourse(Course course, Section section){
+    public boolean unenrollFromCourse(Course course){
         if (!courseMap.containsKey(course.getCode())) { return false; }
 
         courses.remove(course);
         courseMap.remove(course.getCode());
-        section.removeStudent(this);
+        course.getStudents().remove(this);
         return true;
     }
 
     public void markPresent(Course course){
         Map<Student, Attendance> attendanceMap =
-                section.getAttendanceMap();
+                course.getAttendanceMap();
         Attendance attendance = attendanceMap.get(this);
         attendance.setAttended(attendance.getAttended()+1);
         attendance.setTotal(attendance.getTotal()+1);
@@ -73,7 +74,7 @@ public class Student extends Person{
 
     public void markAbsent(Course course){
         Map<Student, Attendance> attendanceMap =
-                section.getAttendanceMap();
+                course.getAttendanceMap();
         Attendance attendance = attendanceMap.get(this);
         attendance.setTotal(attendance.getTotal()+1);
 
