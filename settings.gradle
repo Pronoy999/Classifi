@@ -1,1 +1,1 @@
-include ':app', ':classifi2'
+include ':app'

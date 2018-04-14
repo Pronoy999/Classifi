@@ -17,6 +17,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class SignUpActivity extends AppCompatActivity {
     AppCompatEditText _email, _password;
     AppCompatButton _signUp;
@@ -34,7 +37,15 @@ public class SignUpActivity extends AppCompatActivity {
                 if (!isNotNull(_email, _password)) {
                     _email.setEnabled(false);
                     _password.setEnabled(false);
-                    signUp(_email.getText().toString(), _password.getText().toString());
+                    Pattern pattern=Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\\\.[A-Z]{2,6}$");
+                    Matcher matcher=pattern.matcher(_email.getText().toString());
+                    if(matcher.matches()) {
+                        signUp(_email.getText().toString(), _password.getText().toString());
+                    }else{
+                        _email.setError("Invalid Email.");
+                        _email.setEnabled(true);
+                        _password.setEnabled(true);
+                    }
                 } else {
                     _email.setEnabled(true);
                     _password.setEnabled(true);
