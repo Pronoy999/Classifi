@@ -10,9 +10,8 @@ import java.util.Map;
  */
 
 public class Course {
-    private String code, name, section, teacherID, collegeID;
-    private List<Student> students; //students enrolled in this course.
-    private Map<Student, Attendance> attendanceMap;
+    private String code, name, teacherID, collegeID;
+    private List<Section> sections; //students enrolled in this course.
     private int semester;
     private Teacher teacher; //teacher who made and teaches the course.
 
@@ -20,25 +19,15 @@ public class Course {
     public Course(String code, String courseName) {
         this.code = code;
         this.name = courseName;
-        students = new  ArrayList<>();
-        attendanceMap = new HashMap<>();
-        fillAttendanceMap();
+        sections = new ArrayList<>();
     }
 
-    public Map<Student, Attendance> getAttendanceMap() {
-        return attendanceMap;
+    public List<Section> getSections() {
+        return sections;
     }
 
-    public void setAttendanceMap(Map<Student, Attendance> attendanceMap) {
-        this.attendanceMap = attendanceMap;
-    }
-
-    public List<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(List<Student> students) {
-        this.students = students;
+    public void setSections(List<Section> sections) {
+        this.sections = sections;
     }
 
     public Teacher getTeacher() {
@@ -47,14 +36,6 @@ public class Course {
 
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
-    }
-
-    public String getSection() {
-        return section;
-    }
-
-    public void setSection(String section) {
-        this.section = section;
     }
 
     public String getTeacherID() {
@@ -97,23 +78,12 @@ public class Course {
         this.name = name;
     }
 
-    /**
-     * This is the method to initialize the map with the students and the attendance.
-     */
-    private void fillAttendanceMap() {
-        for (Student student : students) {
-            attendanceMap.put(student, new Attendance(student.getEmail(), code, 0, 0));
-        }
+
+    public void addSection(Section section) {
+        sections.add(section);
     }
 
-    /**
-     * This is the method to update the attendance of the student who were present.
-     *
-     * @param student: The student object who were present.
-     */
-    public void updateAttendanceMap(Student student) {
-        Attendance attendance = attendanceMap.get(student);
-        attendance.incrementAttendance();
-        attendanceMap.put(student, attendance);
+    public void removeSsection(Section section) {
+        sections.remove(section);
     }
 }

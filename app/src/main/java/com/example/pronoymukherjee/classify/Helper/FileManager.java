@@ -1,7 +1,6 @@
 package com.example.pronoymukherjee.classify.Helper;
 
 import android.content.Context;
-import android.content.Intent;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Environment;
@@ -18,7 +17,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URI;
-import java.time.Instant;
 
 import com.example.pronoymukherjee.classify.Exceptions.WriteToSDCardException;
 
