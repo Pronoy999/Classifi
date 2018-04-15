@@ -1,14 +1,11 @@
 package com.example.pronoymukherjee.classify.Helper;
 
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.widget.ProgressBar;
 
 import com.example.pronoymukherjee.classify.Objects.Course;
 import com.example.pronoymukherjee.classify.Objects.Student;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -58,8 +55,8 @@ public class AttendanceTaker extends TimerTask{
      * @param context The context of the application.
      * @return The object of this Singleton.
      */
-    public static AttendanceTaker getCurrentInstance(Course course, Context context, AttendanceEventListener listener){
-        //to get the only instance.
+
+    public synchronized AttendanceTaker getCurrentInstance(Course course, Context context){ //to get the only instance.
         if(currentInstance!=null && currentInstance.course.getCode().equals(course.getCode())){
             return currentInstance;
         }
