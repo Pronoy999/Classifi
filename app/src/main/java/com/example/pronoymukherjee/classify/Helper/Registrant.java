@@ -28,7 +28,7 @@ public class Registrant extends TimerTask{
     private List<Student> registered; //students registered
     private List<Student> notRegistered; //students not registered
     private WifiController controller;
-    private static RegisterEventListener listener; // event listener instance.
+    private RegisterEventListener listener; // event listener instance.
     /**
      * Private constructor. Singleton.
      * @param course The course for which the registration is to be done.
@@ -54,7 +54,8 @@ public class Registrant extends TimerTask{
      * @return The object of this Singleton.
      */
 
-    public static synchronized Registrant getCurrentInstance(Course course, Context context){ //to get the only instance.
+    public static synchronized Registrant getCurrentInstance(Course course, Context context,
+                                                             RegisterEventListener listener){ //to get the only instance.
         if(currentInstance!=null && currentInstance.course.getCode().equals(course.getCode())){
             return currentInstance;
         }
