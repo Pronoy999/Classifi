@@ -21,6 +21,6 @@ public class SplashScreenActivity extends AppCompatActivity {
         if(Constants.LAST_UPDATED_LOCAL_TIME.equals("")){
             Constants.LAST_UPDATED_LOCAL_TIME=String.valueOf(System.currentTimeMillis());
         }*/
-        startService(new Intent(SplashScreenActivity.this, DatabaseService.class));
+       startService(new Intent(SplashScreenActivity.this, DatabaseService.class));
     }
 }
