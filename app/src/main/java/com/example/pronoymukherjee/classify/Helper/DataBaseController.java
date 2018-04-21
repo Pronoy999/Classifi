@@ -26,7 +26,7 @@ public class DataBaseController {
      * @param values: The values for the Student table mapped with the constants name.
      * @return: The ID after insertion. -1 if not error.
      */
-    public long insertDataStudent(ContentValues values) {
+    private long insertDataStudent(ContentValues values) {
         SQLiteDatabase sqLiteDatabase = helper.getWritableDatabase();
         return sqLiteDatabase.insert(Constants.STUDENT_TABLE_NAME, null, values);
     }
@@ -48,7 +48,7 @@ public class DataBaseController {
      * @param values: The values for the Teacher table mapped with the constants name.
      * @return: The ID after Insertion. -1 if error.
      */
-    public long insertDataTeacher(ContentValues values) {
+    private long insertDataTeacher(ContentValues values) {
         SQLiteDatabase sqLiteDatabase = helper.getWritableDatabase();
         return sqLiteDatabase.insert(Constants.TEACHER_TABLE_NAME, null, values);
     }
@@ -64,6 +64,18 @@ public class DataBaseController {
         return sqLiteDatabase.insert(Constants.COLLEGE_TABLE_NAME, null, values);
     }
 
+    /**
+     * This is the Method to call to insert the detials of both the Student and teacher.
+     *
+     * @param values: The Content Values containing the details of the user.
+     * @return: -1 if ERROR, else POSITIVE INTEGER.
+     */
+    public long insertUserData(ContentValues values) {
+        if (values.getAsString(Constants.ACCOUNT).equalsIgnoreCase("T")) {
+            return insertDataTeacher(values);
+        }
+        return insertDataStudent(values);
+    }
 
 
     public static class Helper extends SQLiteOpenHelper {
