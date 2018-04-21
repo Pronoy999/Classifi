@@ -33,6 +33,7 @@ public class Constants {
     public static final String DOB_DATABASE = "dob";
     public static final String DEPARTMENT_DATABASE = "dept";
     public static final String GENDER_DATABASE = "gender";
+    public static final String LAST_UPDATED="lastUpdated";
 
     /**
      * Teacher Table Details.
@@ -115,7 +116,8 @@ public class Constants {
             Constants.NAME_DATABASE + " varchar(255), " +
             Constants.DOB_DATABASE + " DATE, " +
             Constants.DEPARTMENT_DATABASE + " varchar(50), " +
-            Constants.GENDER_DATABASE + "char(1) );";
+            Constants.GENDER_DATABASE + "char(1), "+
+            Constants.LAST_UPDATED+" TIME);";
     /**
      * Create Student Table.
      */
@@ -186,4 +188,7 @@ public class Constants {
      * Drop table Student.
      */
     public static final String DROP_STUDENT_TABLE = "DROP TABLE " + Constants.STUDENT_TABLE_NAME;
+    public static String LAST_UPDATED_LOCAL_TIME="";
+    public static final String JSON_INTENT_DATA="jsonData";
+    public static final String URL="http://192.168.0.103/";
 }

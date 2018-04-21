@@ -65,6 +65,7 @@ public class DataBaseController {
     }
 
 
+
     public static class Helper extends SQLiteOpenHelper {
         public Helper(Context context) {
             super(context, Constants.DATABASE_NAME, null, Constants.DATABASE_VERSION);
