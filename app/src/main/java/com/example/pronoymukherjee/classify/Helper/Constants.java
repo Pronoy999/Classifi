@@ -6,6 +6,11 @@ package com.example.pronoymukherjee.classify.Helper;
  */
 
 public class Constants {
+
+    /**
+     * Database Object.
+     */
+    public static DataBaseController dataBaseController;
     /**
      * Database details.
      */
@@ -198,8 +203,21 @@ public class Constants {
     public static String LAST_UPDATED_LOCAL_TIME = "";
     public static final String JSON_INTENT_DATA = "jsonData";
     public static final String URL = "http://192.168.0.103/";
+    /**
+     * File Details.
+     */
     public static final String USER_FILE_NAME = "userDetails.dat";
     public static final String ROOT_DIRECTORY_NAME = "Classifi";
     public static final String USER_DIRECTORY = "usr";
+    /**
+     * Error Detials.
+     */
     public static final String GENERIC_ERROR_MESSAGE = "Ops Something went wrong.";
+
+    /**
+     * Service Detials.
+     */
+    public static final String SERVICE_KEY="serviceKey";
+    public static final String ADD_TEACHER_DETAILS_SERVICE="teacherAdd";
+
 }

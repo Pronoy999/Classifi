@@ -26,19 +26,14 @@ public class DatabaseService extends IntentService implements HTTPConnector.Resp
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        Message.logMessages(CLASS_TAG, "***SERVICE STARTED.***");
-        //Bundle bundle=intent.getExtras();
-        httpConnector=new HTTPConnector(getApplicationContext(),Constants.URL,this);
-        Message.logMessages(CLASS_TAG, "SERVICE BUNDLE.");
-        //String json = bundle.getString(Constants.JSON_INTENT_DATA);
-        Message.logMessages(CLASS_TAG, "Making Query.");
-        try {
-            //httpConnector.makeQuery(new JSONObject(json));
-            httpConnector.makeQuery();
-        } catch (Exception e) {
-            Message.logMessages(CLASS_TAG, e.toString());
+        Bundle bundle=intent.getExtras();
+        if(bundle!=null) {
+            if (bundle.get(Constants.SERVICE_KEY).toString().
+                    equalsIgnoreCase(Constants.ADD_TEACHER_DETAILS_SERVICE)) {
+                JSONObject jsonObject=Constants.dataBaseController.getTeacherData();
+                //TODO: Make Query.
+            }
         }
-
     }
 
     @Override
