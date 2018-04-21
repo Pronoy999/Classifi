@@ -66,6 +66,7 @@ public class Constants {
     public static final String COURSE_SEMESTER = "semester";
     public static final String COURSE_TEACHER_ID = "teacherEmailID";
     public static final String COURSE_COLLEGE_ID = "collegeID";
+    public static final String COURSE_TOTAL = "total";
 
     /**
      * College Table Details.
@@ -80,7 +81,6 @@ public class Constants {
      */
     public static final String JOIN_TIME = "joinTime";
     public static final String JOIN_ATTENDED = "attended";
-    public static final String JOIN_TOTAL = "total";
     public static final String JOIN_STUDENT_ID = "sid";
     public static final String JOIN_COURSE_ID = "crsID";
 
@@ -117,6 +117,7 @@ public class Constants {
             Constants.PHONE_NUMBER + " varchar(10), " +
             Constants.NAME_DATABASE + " varchar(255), " +
             Constants.DOB_DATABASE + " DATE, " +
+            Constants.COLLEGE_NAME + " varchar(300), " +
             Constants.DEPARTMENT_DATABASE + " varchar(50), " +
             Constants.GENDER_DATABASE + "char(1), " +
             Constants.LAST_UPDATED + " TIME), " +
@@ -148,6 +149,7 @@ public class Constants {
             Constants.COURSE_SEMESTER + " varchar(5), " +
             Constants.COURSE_TEACHER_ID + " varchar(255), " +
             Constants.COURSE_COLLEGE_ID + " varchar(50), " +
+            Constants.COURSE_TOTAL+" INTEGER, "+
             "FOREIGN KEY " + Constants.COURSE_TEACHER_ID + " REFERENCES " +
             Constants.TEACHER_TABLE_NAME + " (" + Constants.EMAIL_ID_DATABASE + ")," +
             "FOREIGN KEY " + Constants.COURSE_COLLEGE_ID + " REFERENCES " +
@@ -167,11 +169,12 @@ public class Constants {
     public static final String CREATE_JOIN_TABLE = "CREATE TABLE " + Constants.JOIN_TABLE_NAME + " ( " +
             Constants.JOIN_TIME + " time, " +
             Constants.JOIN_ATTENDED + " INTEGER, " +
-            Constants.JOIN_TOTAL + "INTEGER, " +
             Constants.JOIN_STUDENT_ID + " varchar(255), " +
             Constants.JOIN_COURSE_ID + " varchar(300), " +
             "FOREIGN KEY " + Constants.JOIN_COURSE_ID + " REFERENCES " +
-            Constants.COURSE_TABLE_NAME + " ( " + Constants.COLLEGE_ID + "));";
+            Constants.COURSE_TABLE_NAME + " (" + Constants.COLLEGE_ID + "), "+
+            "FOREIGN KEY "+Constants.JOIN_STUDENT_ID+" REFERENCES "+
+            Constants.STUDENT_TABLE_NAME+" ("+Constants.EMAIL_ID_DATABASE+"));";
 
     /**
      * Create Slot Table.
@@ -195,4 +198,8 @@ public class Constants {
     public static String LAST_UPDATED_LOCAL_TIME = "";
     public static final String JSON_INTENT_DATA = "jsonData";
     public static final String URL = "http://192.168.0.103/";
+    public static final String USER_FILE_NAME = "userDetails.dat";
+    public static final String ROOT_DIRECTORY_NAME = "Classifi";
+    public static final String USER_DIRECTORY = "usr";
+    public static final String GENERIC_ERROR_MESSAGE = "Ops Something went wrong.";
 }
