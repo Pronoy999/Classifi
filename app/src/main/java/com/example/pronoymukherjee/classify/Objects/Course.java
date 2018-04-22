@@ -10,16 +10,22 @@ import java.util.Map;
  */
 
 public class Course {
-    private String code, name, section, teacherID, collegeID;
+    private String code, name, section, teacherID, collegeID, department;
     private List<Student> students; //students enrolled in this course.
     private Map<Student, Attendance> attendanceMap;
     private int semester;
     private Teacher teacher; //teacher who made and teaches the course.
 
 
-    public Course(String code, String courseName) {
+    public Course(String code, String name, String section,
+                  int semester, Teacher teacher) {
         this.code = code;
-        this.name = courseName;
+        this.name = name;
+        this.section=section;
+        this.teacherID = teacher.getID();
+        this.department=teacher.getDepartment();
+        this.collegeID = teacher.getCollege().getCollegeCode();
+        this.semester=semester;
         students = new  ArrayList<>();
         attendanceMap = new HashMap<>();
         fillAttendanceMap();

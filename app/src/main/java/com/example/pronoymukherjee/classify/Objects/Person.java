@@ -60,6 +60,30 @@ public abstract class Person {
 
     public void setDob(Date dob) {this.dob = dob;}
     public void setGender(char gender) {this.gender = gender;}
+
+    public College getCollege() {
+        return college;
+    }
+
+    public void setCollege(College college) {
+        this.college = college;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
+
+    public Map<String, Course> getCourseMap() {
+        return courseMap;
+    }
+
+    public void setCourseMap(Map<String, Course> courseMap) {
+        this.courseMap = courseMap;
+    }
 }
 
 
