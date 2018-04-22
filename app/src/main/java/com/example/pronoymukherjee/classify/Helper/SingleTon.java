@@ -51,4 +51,12 @@ public class SingleTon {
     public void addToRequestQueue(Request request){
         requestQueue.add(request).setRetryPolicy(new DefaultRetryPolicy());
     }
+
+    /**
+     * To cancel requests made with tag 'tag'.
+     * @param tag the tag.
+     */
+    public void removeFromREquestQueue(Object tag){
+        requestQueue.cancelAll(tag);
+    }
 }
