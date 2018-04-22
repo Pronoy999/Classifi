@@ -16,52 +16,52 @@ public class Constants {
     /**
      * Database details.
      */
-    public static final String DATABASE_NAME = "ClassifyDatabase";
-    public static final int DATABASE_VERSION = 1;
+    static final String DATABASE_NAME = "ClassifyDatabase";
+    static final int DATABASE_VERSION = 1;
 
     /**
      * Table name Details.
      */
-    public static final String PERSON_TABLE_NAME = "Person";
-    public static final String TEACHER_TABLE_NAME = "Teacher";
-    public static final String STUDENT_TABLE_NAME = "Student";
-    public static final String COURSE_TABLE_NAME = "Course";
-    public static final String COLLEGE_TABLE_NAME = "College";
-    public static final String JOIN_TABLE_NAME = "Joins";
-    public static final String SLOT_TABLE_NAME = "Slot";
+    static final String PERSON_TABLE_NAME = "Person";
+    static final String TEACHER_TABLE_NAME = "Teacher";
+    static final String STUDENT_TABLE_NAME = "Student";
+    static final String COURSE_TABLE_NAME = "Course";
+    static final String COLLEGE_TABLE_NAME = "College";
+    static final String JOIN_TABLE_NAME = "Joins";
+    static final String SLOT_TABLE_NAME = "Slot";
 
     /**
      * Person Table Details.
      */
-    public static final String EMAIL_ID_DATABASE = "emailID";
-    public static final String ADDRESS_DATABASE = "address";
-    public static final String PHONE_NUMBER = "phoneNumber";
-    public static final String NAME_DATABASE = "name";
-    public static final String DOB_DATABASE = "dob";
-    public static final String DEPARTMENT_DATABASE = "dept";
-    public static final String GENDER_DATABASE = "gender";
-    public static final String LAST_UPDATED = "lastUpdated";
-    public static final String PASSWORD_HASH = "passwordHash";
-    public static final String ACCOUNT = "account";
+    static final String EMAIL_ID_DATABASE = "emailID";
+    static final String ADDRESS_DATABASE = "address";
+    static final String PHONE_NUMBER = "phoneNumber";
+    static final String NAME_DATABASE = "name";
+    static final String DOB_DATABASE = "dob";
+    static final String DEPARTMENT_DATABASE = "dept";
+    static final String GENDER_DATABASE = "gender";
+    private static final String LAST_UPDATED = "lastUpdated";
+    static final String PASSWORD_HASH = "passwordHash";
+    static final String ACCOUNT = "account";
 
     /**
      * Teacher Table Details.
      */
-    public static final String YEAR_OF_JOINING_DATABASE = "yearOfJoining";
-    public static final String JOB_DESIGNATION_DATABASE = "jobDesignation";
-    public static final String PAST_JOB_DATABASE = "pastJob";
-    public static final String MAX_QUALIFICATION_DATABASE = "maxQualification";
+    static final String YEAR_OF_JOINING_DATABASE = "yearOfJoining";
+    static final String JOB_DESIGNATION_DATABASE = "jobDesignation";
+    static final String PAST_JOB_DATABASE = "pastJob";
+    static final String MAX_QUALIFICATION_DATABASE = "maxQualification";
 
     /**
      * Student Table Details.
      */
-    public static final String SCHOOL_DATABASE = "school";
-    public static final String DEGREE_DATABASE = "degree";
-    public static final String BSSID_DATABASE = "bssid";
-    public static final String REG_NUMBER_DATABASE = "regNumber";
-    public static final String ROLL_NUMBER_DATABASE = "rollNumber";
-    public static final String START_YEAR_DATABASE = "startYear";
-    public static final String END_YEAR_DATABASE = "endYear";
+    static final String SCHOOL_DATABASE = "school";
+    static final String DEGREE_DATABASE = "degree";
+    static final String BSSID_DATABASE = "bssid";
+    static final String REG_NUMBER_DATABASE = "regNumber";
+    static final String ROLL_NUMBER_DATABASE = "rollNumber";
+    static final String START_YEAR_DATABASE = "startYear";
+    static final String END_YEAR_DATABASE = "endYear";
 
     /**
      * Course Table Details.
@@ -134,7 +134,7 @@ public class Constants {
     /**
      * Create Student Table.
      */
-    public static final String CREATE_STUDENT_TABLE = "CREATE TABLE " +
+    static final String CREATE_STUDENT_TABLE = "CREATE TABLE " +
             Constants.STUDENT_TABLE_NAME + " ( " +
             Constants.EMAIL_ID_DATABASE + " varchar(255), " +
             Constants.SCHOOL_DATABASE + " varchar(255), " +
@@ -149,8 +149,9 @@ public class Constants {
     /**
      * Create Course Table.
      */
-    public static final String CREATE_COURSE_TABLE = "CREATE TABLE " + Constants.COURSE_TABLE_NAME + " ( " +
-            Constants.COURSE_ID + " varchar(300), " +
+    static final String CREATE_COURSE_TABLE = "CREATE TABLE " +
+            Constants.COURSE_TABLE_NAME + " ( " +
+            Constants.COURSE_ID + " INTEGER PRIMARY KEY AUTO_INCREMENT, " +
             Constants.COURSE_NAME + " varchar(100), " +
             Constants.COURSE_DEPT + " varchar(200), " +
             Constants.COURSE_SECTION + " varchar(10), " +
@@ -167,15 +168,17 @@ public class Constants {
     /**
      * Create College Table.
      */
-    public static final String CREATE_COLLEGE_TABLE = "CREATE TABLE " + Constants.COLLEGE_TABLE_NAME + " ( " +
-            Constants.COLLEGE_ID + " varchar(300), " +
+    static final String CREATE_COLLEGE_TABLE = "CREATE TABLE " +
+            Constants.COLLEGE_TABLE_NAME + " ( " +
+            Constants.COLLEGE_ID + " INTEGER PRIMARY KEY AUTO_INCREMENT, " +
             Constants.COLLEGE_UNIVERSITY_NAME + " varchar(255), " +
             Constants.COLLEGE_NAME + " varchar(255), " +
             Constants.COLLEGE_CITY + " varchar(255));";
     /**
      * Create Join Table.
      */
-    public static final String CREATE_JOIN_TABLE = "CREATE TABLE " + Constants.JOIN_TABLE_NAME + " ( " +
+    static final String CREATE_JOIN_TABLE = "CREATE TABLE " +
+            Constants.JOIN_TABLE_NAME + " ( " +
             Constants.JOIN_TIME + " time, " +
             Constants.JOIN_ATTENDED + " INTEGER, " +
             Constants.JOIN_STUDENT_ID + " varchar(255), " +
@@ -188,22 +191,24 @@ public class Constants {
     /**
      * Create Slot Table.
      */
-    public static final String CREATE_SLOT_TABLE = "CREATE TABLE " + Constants.SLOT_TABLE_NAME + " ( " +
+    static final String CREATE_SLOT_TABLE = "CREATE TABLE " +
+            Constants.SLOT_TABLE_NAME + " ( " +
             Constants.SLOT_ID + " varchar(300), " +
             Constants.SLOT_START_TIME + " time, " +
             Constants.SLOT_END_TIME + " time, " +
             Constants.SLOT_DAY + " varchar(10), " +
             Constants.SLOT_COURSE_ID + " varchar(300)" +
-            "FOREIGN KEY (" + Constants.SLOT_COURSE_ID + ") " + "REFERENCES " + Constants.COURSE_TABLE_NAME +
+            "FOREIGN KEY (" + Constants.SLOT_COURSE_ID + ") " + "REFERENCES " +
+            Constants.COURSE_TABLE_NAME +
             " (" + Constants.COURSE_ID + "));";
     /**
      * Drop table Person.
      */
-    public static final String DROP_PERSON_TABLE = "DROP TABLE " + Constants.PERSON_TABLE_NAME;
+    static final String DROP_PERSON_TABLE = "DROP TABLE " + Constants.PERSON_TABLE_NAME;
     /**
      * Drop table Student.
      */
-    public static final String DROP_STUDENT_TABLE = "DROP TABLE " + Constants.STUDENT_TABLE_NAME;
+    static final String DROP_STUDENT_TABLE = "DROP TABLE " + Constants.STUDENT_TABLE_NAME;
     public static String LAST_UPDATED_LOCAL_TIME = "";
     public static final String JSON_INTENT_DATA = "jsonData";
     public static final String URL = "http://192.168.0.103/";
