@@ -18,6 +18,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
         //Declaring the DatabaseController object.
         Constants.dataBaseController=new DataBaseController(getApplicationContext());
+        Constants.fillResponseCode();
 
         /*SharedPreferences sharedPreferences=getPreferences(MODE_PRIVATE);
         Constants.LAST_UPDATED_LOCAL_TIME=sharedPreferences.getString(Constants.LAST_UPDATED,"");

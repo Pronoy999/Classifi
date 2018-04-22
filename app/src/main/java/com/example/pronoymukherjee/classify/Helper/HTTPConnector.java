@@ -7,6 +7,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -74,5 +75,22 @@ public class HTTPConnector {
             }
         });
         SingleTon.getInstance(context.getApplicationContext()).addToRequestQueue(request);
+    }
+
+    /**
+     * This is the method to check the status of the response.
+     * @param response: The JSON Data.
+     * @return: TRUE if Correct Response, else FALSE.
+     */
+    public boolean isCorrectResponse(JSONObject response){
+        try {
+            int responseCode=response.getInt(Constants.JSON_STATUS);
+            String data=Constants.RESPONSE_CODES.get(responseCode);
+            if(data.equalsIgnoreCase("OK"))
+                return true;
+        } catch (JSONException e) {
+            Message.logMessages(TAG,e.toString());
+        }
+        return false;
     }
 }

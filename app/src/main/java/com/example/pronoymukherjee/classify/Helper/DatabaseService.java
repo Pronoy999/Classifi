@@ -19,6 +19,7 @@ import org.json.JSONObject;
 public class DatabaseService extends IntentService implements HTTPConnector.ResponseListener {
     HTTPConnector httpConnector;
     public static final String CLASS_TAG = DatabaseService.class.getSimpleName();
+    private String serviceKey="";
 
     public DatabaseService() {
         super("DatabaseService");
@@ -27,12 +28,14 @@ public class DatabaseService extends IntentService implements HTTPConnector.Resp
     @Override
     protected void onHandleIntent(Intent intent) {
         Bundle bundle=intent.getExtras();
+        String query="";
         if(bundle!=null) {
-            if (bundle.get(Constants.SERVICE_KEY).toString().
-                    equalsIgnoreCase(Constants.ADD_TEACHER_DETAILS_SERVICE)) {
+            serviceKey=bundle.get(Constants.SERVICE_KEY).toString();
+            if (serviceKey.equalsIgnoreCase(Constants.ADD_TEACHER_DETAILS_SERVICE)) {
                 JSONObject jsonObject=Constants.dataBaseController.getTeacherData();
-                //TODO: Make Query.
-            }
+                //TODO: Change the QueryURL.
+                query="";
+            }            
         }
     }
 
@@ -44,17 +47,5 @@ public class DatabaseService extends IntentService implements HTTPConnector.Resp
 
     @Override
     public void onResponse(JSONObject response) {
-        /*try {
-            String timeStamp=response.getString(Constants.LAST_UPDATED);
-            if(timeStamp.compareTo(Constants.LAST_UPDATED_LOCAL_TIME)>0){
-                //TODO:Update the Local with the Server.
-            }
-            else if(timeStamp.compareTo(Constants.LAST_UPDATED_LOCAL_TIME)<0){
-                //TODO:Fetch the data from server and Update local.
-            }
-        } catch (JSONException e) {
-            Message.logMessages(CLASS_TAG,e.toString());
-        }*/
-        Message.logMessages(CLASS_TAG, response.toString());
     }
 }

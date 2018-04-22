@@ -1,5 +1,7 @@
 package com.example.pronoymukherjee.classify.Helper;
 
+import java.util.HashMap;
+
 /**
  * Created by pronoymukherjee on 25/03/18.
  * This is the class to store all the constants used all over the app.
@@ -219,5 +221,23 @@ public class Constants {
      */
     public static final String SERVICE_KEY="serviceKey";
     public static final String ADD_TEACHER_DETAILS_SERVICE="teacherAdd";
+    /**
+     * Map of the Response Code.
+     */
+    public static final HashMap<Integer,String> RESPONSE_CODES =new HashMap<>();
 
+    /**
+     * This is the method to fill the Response code of the Server.
+     */
+    public static void fillResponseCode(){
+        RESPONSE_CODES.put(200,"OK");
+        RESPONSE_CODES.put(301,"Invalid Query");
+        RESPONSE_CODES.put(400,"Invalid JSON Structure");
+        RESPONSE_CODES.put(498,"Invalid Token");
+        RESPONSE_CODES.put(500,"Table doesn't exits");
+    }
+    /**
+     * JSON Response KEYS.
+     */
+    public static final String JSON_STATUS="status";
 }
