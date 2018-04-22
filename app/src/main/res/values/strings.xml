@@ -8,4 +8,8 @@
     <string name="college_name">College Name</string>
     <string name="year_of_joining">Year of Joining</string>
     <string name="degree">Degree</string>
+    <string name="name">Name</string>
+    <string name="gender">Gender</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="email">email</string>
 </resources>

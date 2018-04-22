@@ -5,69 +5,79 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.pronoymukherjee.classify.Activities.BasicDetails">
-    <ImageView
+
+    <android.support.v7.widget.AppCompatImageView
         android:id="@+id/DisplayPicture"
         android:layout_width="215dp"
         android:layout_height="120dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintBottom_toTopOf="@+id/Name"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/radiobutton_off_background" />
+        app:layout_constraintVertical_chainStyle="packed"
+        android:src="@drawable/ic_dp" />
 
-    <EditText
+    <android.support.v7.widget.AppCompatEditText
         android:id="@+id/Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:hint="@string/name"
         app:layout_constraintBottom_toTopOf="@+id/DateofBirth"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DisplayPicture" />
 
-    <EditText
+    <android.support.v7.widget.AppCompatEditText
         android:id="@+id/DateofBirth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="296dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="196dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:ems="10"
         android:inputType="date"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.522"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent" />
 
 
-    <Spinner
+    <android.support.v7.widget.AppCompatSpinner
         android:id="@+id/spinner"
         android:layout_width="137dp"
         android:layout_height="34dp"
-        android:layout_marginBottom="248dp"
-        android:layout_marginEnd="96dp"
+        android:layout_marginBottom="116dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DateofBirth" />
 
-    <TextView
+    <android.support.v7.widget.AppCompatTextView
         android:id="@+id/Gender"
-        android:layout_width="74dp"
-        android:layout_height="34dp"
-        android:layout_marginBottom="248dp"
+        android:layout_width="63dp"
+        android:layout_height="28dp"
+        android:layout_marginBottom="116dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="TextView"
+        android:layout_marginTop="8dp"
+        android:text="@string/gender"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/spinner"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.901"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DateofBirth" />
 
 </android.support.constraint.ConstraintLayout>
