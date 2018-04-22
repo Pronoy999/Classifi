@@ -2,9 +2,13 @@ package com.example.pronoymukherjee.classify.Helper;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Created by pronoymukherjee on 25/03/18.
@@ -75,6 +79,50 @@ public class DataBaseController {
             return insertDataTeacher(values);
         }
         return insertDataStudent(values);
+    }
+
+    /**
+     * This is the method to get the teacher details.
+     * @return: The JSON Containing the details of the teacher.
+     */
+    public JSONObject getTeacherData() {
+        JSONObject teacherData = new JSONObject();
+        String query = "SELECT * FROM " + Constants.PERSON_TABLE_NAME;
+        SQLiteDatabase sqLiteDatabase = helper.getWritableDatabase();
+        Cursor personCursor = sqLiteDatabase.rawQuery(query, null);
+        query="SELECT * FROM "+Constants.TEACHER_TABLE_NAME;
+        Cursor teacherCursor=sqLiteDatabase.rawQuery(query,null);
+        try {
+            while (!personCursor.moveToNext()) {
+                teacherData.put(Constants.EMAIL_ID_DATABASE, personCursor.getString(0));
+                teacherData.put(Constants.ADDRESS_DATABASE, personCursor.getString(1));
+                teacherData.put(Constants.PHONE_NUMBER, personCursor.getString(2));
+                teacherData.put(Constants.NAME_DATABASE, personCursor.getString(3));
+                teacherData.put(Constants.DOB_DATABASE, personCursor.getString(4));
+                teacherData.put(Constants.DEPARTMENT_DATABASE, personCursor.getString(5));
+                teacherData.put(Constants.GENDER_DATABASE, personCursor.getString(6));
+                teacherData.put(Constants.PASSWORD_HASH, personCursor.getString(8));
+                teacherData.put(Constants.ACCOUNT, personCursor.getString(9));
+                teacherData.put(Constants.COLLEGE_NAME, personCursor.getString(10));
+            }
+            while (!teacherCursor.moveToNext()){
+                teacherData.put(Constants.YEAR_OF_JOINING_DATABASE,teacherCursor.getString(1));
+                teacherData.put(Constants.JOB_DESIGNATION_DATABASE,teacherCursor.getString(2));
+                teacherData.put(Constants.PAST_JOB_DATABASE,teacherCursor.getString(3));
+                teacherData.put(Constants.MAX_QUALIFICATION_DATABASE,teacherCursor.getString(4));
+            }
+
+        } catch (JSONException e) {
+            Message.logMessages(CLASS_TAG, e.toString());
+        } finally {
+            if (personCursor != null) {
+                personCursor.close();
+            }
+            if(teacherCursor!=null){
+                teacherCursor.close();
+            }
+        }
+        return teacherData;
     }
 
 

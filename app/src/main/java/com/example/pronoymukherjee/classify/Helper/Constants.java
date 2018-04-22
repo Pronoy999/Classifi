@@ -1,11 +1,18 @@
 package com.example.pronoymukherjee.classify.Helper;
 
+import java.util.HashMap;
+
 /**
  * Created by pronoymukherjee on 25/03/18.
  * This is the class to store all the constants used all over the app.
  */
 
 public class Constants {
+
+    /**
+     * Database Object.
+     */
+    public static DataBaseController dataBaseController;
     /**
      * Database details.
      */
@@ -198,8 +205,39 @@ public class Constants {
     public static String LAST_UPDATED_LOCAL_TIME = "";
     public static final String JSON_INTENT_DATA = "jsonData";
     public static final String URL = "http://192.168.0.103/";
+    /**
+     * File Details.
+     */
     public static final String USER_FILE_NAME = "userDetails.dat";
     public static final String ROOT_DIRECTORY_NAME = "Classifi";
     public static final String USER_DIRECTORY = "usr";
+    /**
+     * Error Detials.
+     */
     public static final String GENERIC_ERROR_MESSAGE = "Ops Something went wrong.";
+
+    /**
+     * Service Detials.
+     */
+    public static final String SERVICE_KEY="serviceKey";
+    public static final String ADD_TEACHER_DETAILS_SERVICE="teacherAdd";
+    /**
+     * Map of the Response Code.
+     */
+    public static final HashMap<Integer,String> RESPONSE_CODES =new HashMap<>();
+
+    /**
+     * This is the method to fill the Response code of the Server.
+     */
+    public static void fillResponseCode(){
+        RESPONSE_CODES.put(200,"OK");
+        RESPONSE_CODES.put(301,"Invalid Query");
+        RESPONSE_CODES.put(400,"Invalid JSON Structure");
+        RESPONSE_CODES.put(498,"Invalid Token");
+        RESPONSE_CODES.put(500,"Table doesn't exits");
+    }
+    /**
+     * JSON Response KEYS.
+     */
+    public static final String JSON_STATUS="status";
 }
