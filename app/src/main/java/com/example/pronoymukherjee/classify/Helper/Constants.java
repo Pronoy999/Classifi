@@ -74,6 +74,7 @@ public class Constants {
     public static final String COURSE_TEACHER_ID = "teacherEmailID";
     public static final String COURSE_COLLEGE_ID = "collegeID";
     public static final String COURSE_TOTAL = "total";
+    public static final String COURSE_CODE = "courseCode";
 
     /**
      * College Table Details.
@@ -156,7 +157,8 @@ public class Constants {
             Constants.COURSE_SEMESTER + " varchar(5), " +
             Constants.COURSE_TEACHER_ID + " varchar(255), " +
             Constants.COURSE_COLLEGE_ID + " varchar(50), " +
-            Constants.COURSE_TOTAL+" INTEGER, "+
+            Constants.COURSE_TOTAL + " INTEGER, " +
+            Constants.COURSE_CODE + " varchar(30), " +
             "FOREIGN KEY " + Constants.COURSE_TEACHER_ID + " REFERENCES " +
             Constants.TEACHER_TABLE_NAME + " (" + Constants.EMAIL_ID_DATABASE + ")," +
             "FOREIGN KEY " + Constants.COURSE_COLLEGE_ID + " REFERENCES " +
@@ -179,9 +181,9 @@ public class Constants {
             Constants.JOIN_STUDENT_ID + " varchar(255), " +
             Constants.JOIN_COURSE_ID + " varchar(300), " +
             "FOREIGN KEY " + Constants.JOIN_COURSE_ID + " REFERENCES " +
-            Constants.COURSE_TABLE_NAME + " (" + Constants.COLLEGE_ID + "), "+
-            "FOREIGN KEY "+Constants.JOIN_STUDENT_ID+" REFERENCES "+
-            Constants.STUDENT_TABLE_NAME+" ("+Constants.EMAIL_ID_DATABASE+"));";
+            Constants.COURSE_TABLE_NAME + " (" + Constants.COLLEGE_ID + "), " +
+            "FOREIGN KEY " + Constants.JOIN_STUDENT_ID + " REFERENCES " +
+            Constants.STUDENT_TABLE_NAME + " (" + Constants.EMAIL_ID_DATABASE + "));";
 
     /**
      * Create Slot Table.
@@ -219,26 +221,27 @@ public class Constants {
     /**
      * Service Detials.
      */
-    public static final String SERVICE_KEY="serviceKey";
-    public static final String ADD_TEACHER_DETAILS_SERVICE="teacherAdd";
-    public static final String ADD_STUDENT_DETAILS_SERVICE="studentAdd";
+    public static final String SERVICE_KEY = "serviceKey";
+    public static final String ADD_TEACHER_DETAILS_SERVICE = "teacherAdd";
+    public static final String ADD_STUDENT_DETAILS_SERVICE = "studentAdd";
     /**
      * Map of the Response Code.
      */
-    public static final HashMap<Integer,String> RESPONSE_CODES =new HashMap<>();
+    public static final HashMap<Integer, String> RESPONSE_CODES = new HashMap<>();
 
     /**
      * This is the method to fill the Response code of the Server.
      */
-    public static void fillResponseCode(){
-        RESPONSE_CODES.put(200,"OK");
-        RESPONSE_CODES.put(301,"Invalid Query");
-        RESPONSE_CODES.put(400,"Invalid JSON Structure");
-        RESPONSE_CODES.put(498,"Invalid Token");
-        RESPONSE_CODES.put(500,"Table doesn't exits");
+    public static void fillResponseCode() {
+        RESPONSE_CODES.put(200, "OK");
+        RESPONSE_CODES.put(301, "Invalid Query");
+        RESPONSE_CODES.put(400, "Invalid JSON Structure");
+        RESPONSE_CODES.put(498, "Invalid Token");
+        RESPONSE_CODES.put(500, "Table doesn't exits");
     }
+
     /**
      * JSON Response KEYS.
      */
-    public static final String JSON_STATUS="status";
+    public static final String JSON_STATUS = "status";
 }

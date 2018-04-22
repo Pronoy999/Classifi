@@ -103,6 +103,10 @@ public class Course {
         this.name = name;
     }
 
+    public String getDepartment() {return department; }
+
+    public void setDepartment(String department) {this.department = department;}
+
     /**
      * This is the method to initialize the map with the students and the attendance.
      */

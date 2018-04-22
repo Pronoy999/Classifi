@@ -1,5 +1,8 @@
 package com.example.pronoymukherjee.classify.Objects;
 
+import com.example.pronoymukherjee.classify.Helper.Constants;
+import com.example.pronoymukherjee.classify.Helper.Message;
+
 import java.util.Date;
 
 /**
@@ -8,6 +11,7 @@ import java.util.Date;
  */
 
 public class Teacher extends Person {
+    private String CLASS_TAG = Teacher.class.getSimpleName();
 
     public Teacher(String ID, String name, String department, String email, String phoneNumber,
                    String yearOfJoin, Date dob, char gender, College college) {
@@ -17,8 +21,8 @@ public class Teacher extends Person {
     /**
      * @param courseCode the code of the new course.
      * @param courseName the name of the new course.
-     * @param section the section to which the new course belongs.
-     * @param semester the semester the course is for.
+     * @param section    the section to which the new course belongs.
+     * @param semester   the semester the course is for.
      * @return the new course.
      */
     public Course makeCourse(String courseCode, String courseName, String section, int semester) {
@@ -26,6 +30,12 @@ public class Teacher extends Person {
                 section, semester, this);
         courses.add(newCourse);
         courseMap.put(courseCode, newCourse);
+        //adding the course to the database.
+        if (Constants.dataBaseController.addCourse(newCourse) < 0) {
+            Message.logMessages(CLASS_TAG, "Course not added in Database.");
+        } else {
+            Message.logMessages(CLASS_TAG, "Course added to database successfully.");
+        }
         return newCourse;
     }
 
