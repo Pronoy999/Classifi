@@ -19,24 +19,39 @@ import org.json.JSONObject;
 public class DatabaseService extends IntentService implements HTTPConnector.ResponseListener {
     HTTPConnector httpConnector;
     public static final String CLASS_TAG = DatabaseService.class.getSimpleName();
-    private String serviceKey="";
 
     public DatabaseService() {
         super("DatabaseService");
     }
 
+    /**
+     * This is the method to make the HTTP Query in the server.
+     * @param intent: The Intent Specifying the type of query to make in the server.
+     */
     @Override
     protected void onHandleIntent(Intent intent) {
-        Bundle bundle=intent.getExtras();
-        String query="";
-        if(bundle!=null) {
-            serviceKey=bundle.get(Constants.SERVICE_KEY).toString();
-            if (serviceKey.equalsIgnoreCase(Constants.ADD_TEACHER_DETAILS_SERVICE)) {
-                JSONObject jsonObject=Constants.dataBaseController.getTeacherData();
-                //TODO: Change the QueryURL.
-                query="";
-            }            
+        Bundle bundle = intent.getExtras();
+        String query = "";
+        JSONObject jsonObject=null;
+        if (bundle != null) {
+            String serviceKey = bundle.get(Constants.SERVICE_KEY).toString();
+            switch (serviceKey) {
+                case Constants.ADD_TEACHER_DETAILS_SERVICE:
+                    jsonObject = Constants.dataBaseController.getTeacherData();
+                    //TODO: Change the QueryURL.
+                    query = "";
+                    break;
+                case Constants.ADD_STUDENT_DETAILS_SERVICE:
+                    jsonObject = Constants.dataBaseController.getTeacherData();
+                    //TODO:Change the Query URL.
+                    query = "";
+            }
         }
+        httpConnector = new HTTPConnector(getApplicationContext(),
+                query,
+                this,
+                CLASS_TAG);
+        httpConnector.makeQuery(jsonObject);
     }
 
     @Override
