@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -44,7 +44,8 @@
         <activity android:name=".Activities.StudentAttendanceActivity" />
         <activity android:name=".Activities.TeacherAttendanceActivity" />
         <activity android:name=".Activities.RatingActivity" />
-        <activity android:name=".Activities.AssignmentActivity"></activity>
+        <activity android:name=".Activities.AssignmentActivity" />
+        <activity android:name=".Activities.BaseActivity"></activity>
     </application>
 
 </manifest>
