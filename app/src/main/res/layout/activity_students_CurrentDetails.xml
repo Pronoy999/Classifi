@@ -4,81 +4,139 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.pronoymukherjee.classify.Activities.StudentsAlmaActivity">
+    tools:context="com.example.pronoymukherjee.classify.Activities.TeacherAlmaActivity">
 
-    <android.support.v7.widget.AppCompatEditText
-        android:id="@+id/editText5"
+    <android.support.v7.widget.AppCompatAutoCompleteTextView
+        android:id="@+id/Degree"
+        android:layout_width="216dp"
+        android:layout_height="47dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="44dp"
+        android:ems="10"
+        android:inputType="text"
+        android:spinnerMode="dropdown"
+        android:text="@string/degree"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.468"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.v7.widget.AppCompatAutoCompleteTextView
+        android:id="@+id/College"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textAutoComplete"
-        android:text="@string/college_name"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/college"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintTop_toBottomOf="@+id/semester" />
 
-    <android.support.v7.widget.AppCompatEditText
-        android:id="@+id/editText10"
+    <android.support.v7.widget.AppCompatAutoCompleteTextView
+        android:id="@+id/Department"
         android:layout_width="wrap_content"
-        android:layout_height="42dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:inputType="textAutoComplete"
-        android:text="@string/university_name"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/department"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.472"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText5"
-        app:layout_constraintVertical_bias="0.03" />
+        app:layout_constraintTop_toBottomOf="@+id/Degree" />
 
-    <android.support.v7.widget.AppCompatEditText
-        android:id="@+id/editText9"
+    <android.support.v7.widget.AppCompatAutoCompleteTextView
+        android:id="@+id/university"
         android:layout_width="wrap_content"
         android:layout_height="42dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/school"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:inputType="textAutoComplete"
+        android:text="@string/university"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText10"
-        app:layout_constraintVertical_bias="0.034" />
+        app:layout_constraintTop_toBottomOf="@+id/College" />
 
-    <android.support.v7.widget.AppCompatEditText
-        android:id="@+id/editText6"
-        android:layout_width="213dp"
-        android:layout_height="42dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/year_of_joining"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText9"
-        app:layout_constraintVertical_bias="0.008" />
-
-    <android.support.v7.widget.AppCompatEditText
-        android:id="@+id/editText12"
+    <android.support.v7.widget.AppCompatAutoCompleteTextView
+        android:id="@+id/semester"
         android:layout_width="wrap_content"
-        android:layout_height="47dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="308dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/degree"
-        app:layout_constraintBottom_toTopOf="@+id/editText5"
+        android:text="@string/semester"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.472"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Department"
+        app:layout_constraintVertical_bias="1.0" />
+
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/to"
+        android:layout_width="32dp"
+        android:layout_height="15dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/to"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/university"
+        app:layout_constraintVertical_bias="0.089" />
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/startyear"
+        android:layout_width="76dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="@string/start_year"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/to"
+        app:layout_constraintHorizontal_bias="0.848"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/university"
+        app:layout_constraintVertical_bias="0.064" />
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/endyear"
+        android:layout_width="80dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/end_year"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.22"
+        app:layout_constraintStart_toEndOf="@+id/to"
+        app:layout_constraintTop_toBottomOf="@+id/university"
+        app:layout_constraintVertical_bias="0.064" />
+
 </android.support.constraint.ConstraintLayout>
