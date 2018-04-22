@@ -88,8 +88,8 @@ public class Constants {
      */
     public static final String JOIN_TIME = "joinTime";
     public static final String JOIN_ATTENDED = "attended";
-    public static final String JOIN_STUDENT_ID = "sid";
-    public static final String JOIN_COURSE_ID = "crsID";
+    public static final String JOIN_STUDENT_ID = "studentID";
+    public static final String JOIN_COURSE_ID = "courseID";
 
     /**
      * Slot Table Details.
@@ -98,7 +98,7 @@ public class Constants {
     public static final String SLOT_END_TIME = "endTime";
     public static final String SLOT_START_TIME = "startTime";
     public static final String SLOT_DAY = "day";
-    public static final String SLOT_COURSE_ID = "crsID";
+    public static final String SLOT_COURSE_ID = "courseID";
 
 
     /**
