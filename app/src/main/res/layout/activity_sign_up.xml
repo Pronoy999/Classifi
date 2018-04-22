@@ -15,14 +15,15 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="@string/e_mail"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toTopOf="@+id/editText2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.65"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
-    <ImageView
+    <android.support.v7.widget.AppCompatImageView
         android:id="@+id/imageView"
         android:layout_width="40dp"
         android:layout_height="46dp"
@@ -36,9 +37,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        app:srcCompat="@drawable/ic_mail_outline_black_24dp"/>
 
-    <ImageView
+    <android.support.v7.widget.AppCompatImageView
         android:id="@+id/imageView2"
         android:layout_width="40dp"
         android:layout_height="46dp"
@@ -49,7 +50,7 @@
         app:layout_constraintEnd_toStartOf="@+id/editText2"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/ic_secure" />
+        app:srcCompat="@drawable/ic_vpn_key_black_24dp" />
 
     <android.support.v7.widget.AppCompatEditText
         android:id="@+id/editText2"
@@ -63,61 +64,66 @@
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.65"
         app:layout_constraintStart_toStartOf="parent" />
 
 
-    <Button
+    <android.support.v7.widget.AppCompatButton
         android:id="@+id/button"
-        android:layout_width="110dp"
+        android:layout_width="198dp"
         android:layout_height="46dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
-        android:text="@string/button"
+        android:text="@string/sign_up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText2"
-        app:layout_constraintVertical_bias="0.003" />
+        app:layout_constraintVertical_bias="0.031" />
 
 
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/imageButton8"
+        android:layout_width="165dp"
+        android:layout_height="45dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.611"
-        app:srcCompat="@android:drawable/btn_dialog" />
-
-    <ImageButton
-        android:id="@+id/imageButton8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editText2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.611"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton4"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@android:drawable/btn_dialog" />
 
     <android.support.v7.widget.AppCompatImageButton
-        android:id="@+id/imageButton7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="180dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginStart="36dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton8"
-        app:layout_constraintHorizontal_bias="0.818"
-        app:layout_constraintStart_toEndOf="@+id/imageButton2"
+        android:id="@+id/imageButton3"
+        android:layout_width="165dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button"
         app:srcCompat="@android:drawable/btn_dialog" />
+
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/imageButton4"
+        android:layout_width="165dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton3"
+        app:srcCompat="@android:drawable/btn_dialog" />
+
+
 </android.support.constraint.ConstraintLayout>
