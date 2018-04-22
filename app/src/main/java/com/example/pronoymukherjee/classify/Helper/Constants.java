@@ -221,6 +221,7 @@ public class Constants {
      */
     public static final String SERVICE_KEY="serviceKey";
     public static final String ADD_TEACHER_DETAILS_SERVICE="teacherAdd";
+    public static final String ADD_STUDENT_DETAILS_SERVICE="studentAdd";
     /**
      * Map of the Response Code.
      */
