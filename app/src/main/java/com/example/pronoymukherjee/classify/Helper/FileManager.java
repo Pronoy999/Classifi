@@ -55,12 +55,12 @@ public class FileManager {
                 throw new WriteToSDCardException("Media not mounted or ReadOnly.");
             }
             dirPath = Environment.getExternalStorageDirectory().getPath()+
-                    "/"+context.getString(R.string.app_name)+
+                    "/"+Constants.ROOT_DIRECTORY_NAME+
                     "/"+course.getName();
         }
         else{
             dirPath = context.getExternalFilesDir(null).getPath()+
-                    "/"+context.getString(R.string.app_name)+
+                    "/"+Constants.ROOT_DIRECTORY_NAME+
                     "/"+course.getName();
         }
         return dirPath;
