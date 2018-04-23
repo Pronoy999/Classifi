@@ -10,6 +10,6 @@ public class TeacherAlmaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_teacher_alma);
+        setContentView(R.layout.activity_teacher_CurrentDetails);
     }
 }

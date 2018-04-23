@@ -7,7 +7,8 @@
     tools:context="com.example.pronoymukherjee.classify.Activities.SignUpActivity">
 
     <android.support.v7.widget.AppCompatEditText
-        android:id="@+id/emailEnter"
+
+        android:id="@+id/email"
         android:layout_width="181dp"
         android:layout_height="46dp"
         android:layout_marginBottom="8dp"
@@ -17,22 +18,23 @@
         android:ems="10"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/password_Enter"
+        app:layout_constraintBottom_toTopOf="@+id/password"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.65"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
     <android.support.v7.widget.AppCompatImageView
-        android:id="@+id/imageView"
+        android:id="@+id/emailicon"
         android:layout_width="40dp"
         android:layout_height="46dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
-        app:layout_constraintEnd_toStartOf="@+id/emailEnter"
+        app:layout_constraintBottom_toTopOf="@+id/passwordicon"
+        app:layout_constraintEnd_toStartOf="@+id/email"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -40,20 +42,22 @@
         app:srcCompat="@drawable/ic_mail_outline_black_24dp"/>
 
     <android.support.v7.widget.AppCompatImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/passwordicon"
         android:layout_width="40dp"
         android:layout_height="46dp"
         android:layout_marginBottom="348dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/password_Enter"
+
+        app:layout_constraintEnd_toStartOf="@id/password"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_vpn_key_black_24dp" />
 
     <android.support.v7.widget.AppCompatEditText
-        android:id="@+id/password_Enter"
+
+        android:id="@+id/password"
         android:layout_width="181dp"
         android:layout_height="46dp"
         android:layout_marginBottom="348dp"
@@ -68,7 +72,9 @@
         app:layout_constraintStart_toStartOf="parent" />
 
 
-    <android.support.v7.widget.AppCompatButton 
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/signup"
         android:layout_width="198dp"
         android:id="@+id/signUpButton"
         android:layout_width="110dp"
@@ -82,26 +88,24 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@+id/editText2"
+        app:layout_constraintTop_toBottomOf="@+id/password"
         app:layout_constraintVertical_bias="0.031" />
     <android.support.v7.widget.AppCompatImageButton
-        android:id="@+id/imageButton8"
+        android:id="@+id/signupwithlinkedin"
         android:layout_width="165dp"
         android:layout_height="45dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton4"
+        app:layout_constraintTop_toBottomOf="@+id/signupwithgoogle"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@android:drawable/btn_dialog" />
     <android.support.v7.widget.AppCompatImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/signupwithfacebook"
         android:layout_width="165dp"
         android:layout_height="45dp"
         android:layout_marginEnd="8dp"
@@ -110,11 +114,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/signup"
         app:srcCompat="@android:drawable/btn_dialog" />
 
     <android.support.v7.widget.AppCompatImageButton
-        android:id="@+id/imageButton4"
+        android:id="@+id/signupwithgoogle"
         android:layout_width="165dp"
         android:layout_height="45dp"
         android:layout_marginEnd="8dp"
@@ -122,8 +126,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton3"
+        app:layout_constraintTop_toBottomOf="@+id/signupwithfacebook"
         app:srcCompat="@android:drawable/btn_dialog" />
-
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/signupwithtwitter"
+        android:layout_width="165dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signupwithlinkedin"
+        app:srcCompat="@android:drawable/btn_dialog" />
 
 </android.support.constraint.ConstraintLayout>
