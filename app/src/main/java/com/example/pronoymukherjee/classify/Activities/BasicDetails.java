@@ -12,4 +12,5 @@ public class BasicDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basic_details);
     }
+    //TODO: take the data of the Basic and then send it to the Alma Activity.
 }

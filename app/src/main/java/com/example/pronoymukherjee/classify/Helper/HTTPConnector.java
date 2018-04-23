@@ -7,6 +7,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -19,6 +20,7 @@ public class HTTPConnector {
     public JSONObject response;
     private Context context;
     public ResponseListener responseListener;
+    private Object objectTag;
 
     /**
      * Constructor for the HTTPConnector.
@@ -26,10 +28,11 @@ public class HTTPConnector {
      * @param queryUrl: The URL where the request to be send.
      * @param responseListener: The Response Listener.
      */
-    public HTTPConnector(Context context,String queryUrl,ResponseListener responseListener){
+    public HTTPConnector(Context context,String queryUrl,ResponseListener responseListener,Object objectTag){
         this.context=context;
         this.queryUrl=queryUrl;
         this.responseListener=responseListener;
+        this.objectTag=objectTag;
     }
     public interface ResponseListener{
         void onResponse(JSONObject response);
@@ -53,6 +56,7 @@ public class HTTPConnector {
                 Message.logMessages(TAG, error.toString());
             }
         });
+        request.setTag(objectTag);
         SingleTon.getInstance(context.getApplicationContext()).addToRequestQueue(request);
     }
 
@@ -74,5 +78,22 @@ public class HTTPConnector {
             }
         });
         SingleTon.getInstance(context.getApplicationContext()).addToRequestQueue(request);
+    }
+
+    /**
+     * This is the method to check the status of the response.
+     * @param response: The JSON Data.
+     * @return: TRUE if Correct Response, else FALSE.
+     */
+    public boolean isCorrectResponse(JSONObject response){
+        try {
+            int responseCode=response.getInt(Constants.JSON_STATUS);
+            String data=Constants.RESPONSE_CODES.get(responseCode);
+            if(data.equalsIgnoreCase("OK"))
+                return true;
+        } catch (JSONException e) {
+            Message.logMessages(TAG,e.toString());
+        }
+        return false;
     }
 }
