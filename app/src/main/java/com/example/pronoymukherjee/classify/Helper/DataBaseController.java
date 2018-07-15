@@ -7,6 +7,8 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.pronoymukherjee.classify.Objects.Course;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -124,6 +126,25 @@ public class DataBaseController {
             }
         }
         return teacherData;
+    }
+
+    /**
+     * This is the method to add the course to the database when a teacher adds a new Course.
+     *
+     * @param course: The course Object  to be added.
+     * @return: Postive integer when the course is added successfully, else -1.
+     */
+    public long addCourse(Course course) {
+        ContentValues values = new ContentValues();
+        values.put(Constants.COURSE_NAME, course.getName());
+        values.put(Constants.COURSE_DEPT, course.getDepartment());
+        values.put(Constants.COURSE_SECTION, course.getSection());
+        values.put(Constants.COURSE_SEMESTER, course.getSemester());
+        values.put(Constants.COURSE_TEACHER_ID, course.getTeacherID());
+        values.put(Constants.COURSE_COLLEGE_ID, course.getCollegeID());
+        values.put(Constants.COURSE_CODE, course.getCode());
+        SQLiteDatabase sqLiteDatabase = helper.getWritableDatabase();
+        return sqLiteDatabase.insert(Constants.COURSE_TABLE_NAME, null, values);
     }
 
     /**
